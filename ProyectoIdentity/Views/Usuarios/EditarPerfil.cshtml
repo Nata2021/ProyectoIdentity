@@ -1,0 +1,93 @@
+﻿@model ProyectoIdentity.Models.AppUsuario
+
+@{
+    ViewData["Title"] = "Editar Perfil";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="row justify-content-center mt-5">
+    <div class="col-lg-10">
+        <div class="card shadow-lg border-0 rounded-4">
+            <div class="card-body p-4">
+                <h2 class="mb-4 text-center">Editar perfil de usuario</h2>
+
+                <form asp-controller="Usuarios" asp-action="EditarPerfil" method="post">
+                    <input type="hidden" asp-for="Id"></>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label asp-for="Nombre" class="form-label"></label>
+                                <input asp-for="Nombre" class="form-control" />
+                                <span asp-validation-for="Nombre" class="text-danger"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label asp-for="Email" class="form-label"></label>
+                                <input asp-for="Email" class="form-control" disabled />
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+
+
+                            <div class="mb-3">
+                                <label asp-for="Url" class="form-label"></label>
+                                <input asp-for="Url" class="form-control" />
+                                <span asp-validation-for="Url" class="text-danger"></span>
+                            </div>
+
+                            <div class="mb-3">
+                                <label asp-for="FechaNacimiento" class="form-label"></label>
+                                <input asp-for="FechaNacimiento" class="form-control" id="datepicker" />
+                                <span asp-validation-for="FechaNacimiento" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="mb-3 row">
+                                <div class="col-4">
+                                    <label asp-for="CodigoPais" class="form-label"></label>
+                                    <input asp-for="CodigoPais" class="form-control" />
+                                    <span asp-validation-for="CodigoPais" class="text-danger"></span>
+                                </div>
+                                <div class="col-8">
+                                    <label asp-for="Telefono" class="form-label"></label>
+                                    <input asp-for="Telefono" class="form-control" />
+                                    <span asp-validation-for="Telefono" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label asp-for="Pais" class="form-label"></label>
+                                <input asp-for="Pais" class="form-control" />
+                                <span asp-validation-for="Pais" class="text-danger"></span>
+                            </div>
+
+                            <div class="mb-3">
+                                <label asp-for="Ciudad" class="form-label"></label>
+                                <input asp-for="Ciudad" class="form-control" />
+                                <span asp-validation-for="Ciudad" class="text-danger"></span>
+                            </div>
+
+                            <div class="mb-3">
+                                <label asp-for="Direccion" class="form-label"></label>
+                                <input asp-for="Direccion" class="form-control" />
+                                <span asp-validation-for="Direccion" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-end">
+                        <button type="submit" class="btn btn-primary rounded-3 px-4 py-2">Editar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+}

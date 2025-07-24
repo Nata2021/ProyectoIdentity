@@ -1,0 +1,183 @@
+﻿@model IEnumerable<ProyectoIdentity.Models.AppUsuario>
+@{
+    ViewData["Title"] = "Administracion de usuarios";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container py-4">
+    <div class="row mb-4">
+        <div class="col text-center">
+            <h2 class="fw-bold">Administración de Usuarios</h2>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        @*  <div class="col text-end">
+            <a asp-action="Crear" asp-controller="Roles" class="btn btn-success shadow-sm">
+                <i class="bi bi-plus-circle me-1"></i> Crear Rol
+            </a>
+        </div> *@
+    </div>
+
+    <div class="card shadow-sm border-1">
+        <div class="card-header bg-dark text-white fw-bold">
+            📋 Lista de Usuarios
+        </div>
+        <div class="card-body p-0">
+            @if (Model.Any())
+            {
+                <div class="table-responsive">
+                    <table id="tablaRoles" class="table table-bordered table-hover mb-0">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Email</th>
+                                <th>Telefono</th>
+                                <th>Rol</th>
+                                <th class="text-center">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <th>@Html.DisplayFor(m => item.Nombre)</th>
+                                    <th>@Html.DisplayFor(m => item.Email)</th>
+                                    <th>@Html.DisplayFor(m => item.Telefono)</th>
+                                    <th>@Html.DisplayFor(m => item.Rol)</th>
+                                    <td class="text-center">
+                                        <a class="btn btn-sm btn-outline-primary me-2"
+                                           asp-controller="Usuarios"
+                                           asp-action="Editar"
+                                           asp-route-id="@item.Id">
+                                            <i class="bi bi-pencil-square"></i> Editar
+                                        </a>
+
+
+                                        @if (item.LockoutEnd == null || item.LockoutEnd < DateTime.Now)
+                                        {
+                                            <form asp-action="BloquearDesbloquear" asp-route-idUsuario="@item.Id" method="post" class="d-inline">
+                                                <button type="submit" class="btn btn-sm btn-outline-primary me-2">
+                                                    <i class="bi bi-lock"></i> Bloquear
+                                                </button>
+                                            </form>
+                                        }
+                                        else
+                                        {
+                                            <form asp-action="BloquearDesbloquear" asp-route-idUsuario="@item.Id" method="post" class="d-inline">
+                                                <button type="submit" class="btn btn-sm btn-outline-primary me-2">
+                                                    <i class="bi bi-unlock"></i> Desbloquear
+                                                </button>
+                                            </form>
+                                        }
+                                        <form asp-action="Borrar" asp-route-idUsuario="@item.Id" method="post" class="d-inline">
+                                            <button type="submit" class="btn btn-sm btn-outline-danger"
+                                                    onclick="return confirm('¿Está seguro de borrar este Usuario?')">
+                                                <i class="bi bi-trash"></i> Borrar
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+            else
+            {
+                <div class="alert alert-info text-center m-3">No hay registros.</div>
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+
+    <script>
+        $(document).ready(function () {
+            $('#tablaRoles').DataTable({
+                scrollX: true, // Habilita scroll horizontal solo si es necesario
+                language: {
+                    "decimal": "",
+                    "emptyTable": "No hay información",
+                    "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+                    "infoEmpty": "Mostrando 0 a 0 de 0 Entradas",
+                    "infoFiltered": "(filtrado de _MAX_ entradas totales)",
+                    "lengthMenu": "Mostrar _MENU_ entradas",
+                    "loadingRecords": "Cargando...",
+                    "processing": "Procesando...",
+                    "search": "Buscar:",
+                    "zeroRecords": "No se encontraron resultados",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Último",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    }
+                }
+            });
+        });
+    </script>
+
+    <style>
+        /* Borde más oscuro para tabla */
+        #tablaRoles th,
+        #tablaRoles td {
+            border: 1px solid #6c757d !important;
+        }
+
+        /* Estilo general de la tabla */
+        #tablaRoles {
+            border-collapse: collapse !important;
+            width: 100% !important;
+            table-layout: auto;
+            font-size: 0.95rem;
+        }
+
+            #tablaRoles thead {
+                background-color: #343a40;
+                color: white;
+            }
+
+            #tablaRoles tbody tr:nth-child(even) {
+                background-color: #f9f9f9;
+            }
+
+            #tablaRoles tbody tr:hover {
+                background-color: #e9ecef;
+            }
+
+        /* Control del scroll horizontal solo si es necesario */
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        /* Ajuste visual para los controles del datatable */
+        .dataTables_wrapper .dataTables_filter {
+            float: right;
+            margin-right: 1rem;
+        }
+
+        .dataTables_wrapper .dataTables_length {
+            float: left;
+            margin-left: 1rem;
+        }
+
+        .dataTables_filter input {
+            margin-left: 0.5rem;
+            padding: 0.25rem 0.5rem;
+        }
+
+        /* Mejora el padding del encabezado */
+        .card-header {
+            padding: 0.75rem 1.25rem;
+            font-size: 1.2rem;
+        }
+
+        /* Evita que el botón quede pegado */
+        .btn {
+            margin: 0.2rem 0;
+        }
+    </style>
+}

@@ -1,0 +1,109 @@
+﻿@model AccesoViewModel
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+
+@{
+    ViewData["Title"] = "Acceso de usuario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row justify-content-center mt-5">
+    <div class="col-md-8 col-lg-5">
+        <div class="card shadow border-0 rounded-4">
+            <div class="card-body p-5">
+                <h2 class="text-center fw-bold mb-3">Iniciar sesión</h2>
+                <p class="text-center text-muted mb-4">Ingrese los datos de su cuenta</p>
+
+                <form asp-controller="Cuentas" asp-action="Acceso" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" novalidate>
+                    <div class="mb-3">
+                        <label asp-for="Email" class="form-label">Correo electrónico</label>
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger small"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Password" class="form-label">Contraseña</label>
+                        <div class="input-group">
+                            <input asp-for="Password" class="form-control" id="passwordInput" type="password" />
+                            <button class="btn btn-outline-secondary" type="button" onclick="togglePasswordVisibility()" tabindex="-1">
+                                <i class="bi bi-eye" id="eyeIcon"></i>
+                            </button>
+                        </div>
+                        <span asp-validation-for="Password" class="text-danger small"></span>
+                    </div>
+
+                    <div class="form-check mb-4">
+                        <input asp-for="RememberMe" class="form-check-input" />
+                        <label asp-for="RememberMe" class="form-check-label">
+                            @Html.DisplayNameFor(m => m.RememberMe)
+                        </label>
+                    </div>
+
+                    <div class="d-grid mb-4">
+                        <button type="submit" class="btn btn-lg rounded-3 fw-semibold text-white" style="background-color: #000;">
+                            Iniciar sesión
+                        </button>
+                    </div>
+                </form>
+
+                @* Autenticación externa *@
+                @{
+                    var esquemas = await SignInManager.GetExternalAuthenticationSchemesAsync();
+                    var proveedoresAcceso = esquemas.ToList();
+                }
+
+                @if (proveedoresAcceso.Count > 0)
+                {
+                    <div class="text-center text-muted mb-3">O ingresar con:</div>
+                    <form asp-controller="Cuentas" asp-action="AccesoExterno" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
+                        <div class="d-flex justify-content-between gap-2 mb-4">
+                            @foreach (var proveedor in proveedoresAcceso)
+                            {
+                                if (proveedor.Name == "Facebook")
+                                {
+                                    <button type="submit" name="proveedor" value="@proveedor.Name" class="btn btn-outline-primary w-100 d-flex align-items-center justify-content-center" title="Acceder con Facebook">
+                                        <i class="bi bi-facebook me-2"></i> Facebook
+                                    </button>
+                                }
+                                if (proveedor.Name == "Google")
+                                {
+                                    <button type="submit" name="proveedor" value="@proveedor.Name" class="btn btn-outline-danger w-100 d-flex align-items-center justify-content-center" title="Acceder con Google">
+                                        <i class="bi bi-google me-2"></i> Google
+                                    </button>
+                                }
+                            }
+                        </div>
+                    </form>
+                }
+
+                <div class="text-center mt-3">
+                    <p><a asp-action="Registro">¿No tenés cuenta? Crear una cuenta</a></p>
+                    <p><a asp-action="OlvidoPassword">¿Problemas para iniciar sesión?</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+<script>
+    function togglePasswordVisibility() {
+        const pwd = document.getElementById("passwordInput");
+        const icon = document.getElementById("eyeIcon");
+        if (pwd.type === "password") {
+            pwd.type = "text";
+            icon.classList.remove("bi-eye");
+            icon.classList.add("bi-eye-slash");
+        } else {
+            pwd.type = "password";
+            icon.classList.remove("bi-eye-slash");
+            icon.classList.add("bi-eye");
+        }
+    }
+</script>
+}

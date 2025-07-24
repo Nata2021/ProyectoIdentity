@@ -1,0 +1,41 @@
+﻿@model Microsoft.AspNetCore.Identity.IdentityRole
+
+
+@{
+    ViewData["Title"] = "Crear nuevo rol";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row justify-content-center mt-5">
+    <div class="col-md-8 col-lg-5">
+        <div class="card shadow border-0 rounded-4">
+            <div class="card-body p-5">
+                <h2 class="text-center fw-bold mb-3">Crear nuevo Rol</h2>
+
+
+                <form asp-controller="Roles" asp-action="Crear" method="post">
+                    <div class="mb-3">
+                        <label asp-for="Name" class="form-label">Rol</label>
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger small"></span>
+                    </div>
+
+
+                    <div class="d-grid mb-4">
+                        <button type="submit" class="btn btn-lg rounded-3 fw-semibold text-white" style="background-color: #000;">
+                            Crear Rol
+                        </button>
+                    </div>
+                </form>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,26 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    @if (User.Identity.IsAuthenticated)
+    {
+        var autentica2Factores = ViewData["Autenticacion2FactoresActiva"];
+
+        if (autentica2Factores != null && autentica2Factores.ToString().ToLower() == "true")
+        {
+            <a asp-action="EliminarAutenticacion" asp-controller="Cuentas" btn btn-danger>Resetear o Eliminar Autenticacion de dos factores</a>
+        }
+        else
+        {
+            <a asp-action="ActivarAutenticador" asp-controller="Cuentas" class="btn btn-primary">Configurar A2F</a>
+            <br />
+        }
+
+
+    }
+
+
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
