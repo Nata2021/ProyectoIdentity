@@ -1,0 +1,84 @@
+﻿@model ProyectoIdentity.Models.Domain.Caso
+
+@{
+    ViewData["Title"] = "Detalles del Caso";
+}
+
+<h1>Detalles del Caso</h1>
+
+<div>
+    <h4>Caso</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Titulo)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Titulo)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.FechaInicio)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.FechaInicio)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Estado)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Estado)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Cliente)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Cliente.NombreCompleto)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Abogado)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Abogado.NombreCompleto)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.TipoCaso)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.TipoCaso)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Prioridad)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Prioridad)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.FechaCreacion)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.FechaCreacion)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.FechaUltimaActualizacion)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.FechaUltimaActualizacion)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.IsDeleted)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.IsDeleted)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.CasoId" class="btn btn-warning">Editar</a> |
+    <a asp-action="Index" class="btn btn-secondary">Volver al Listado</a>
+</div>

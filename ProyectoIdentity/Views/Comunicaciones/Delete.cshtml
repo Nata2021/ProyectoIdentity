@@ -1,0 +1,63 @@
+﻿@model ProyectoIdentity.Models.Domain.Comunicacion
+
+@{
+    ViewData["Title"] = "Eliminar Comunicación";
+}
+
+<h1>Eliminar Comunicación</h1>
+
+<h3>¿Está seguro de que desea eliminar esta comunicación?</h3>
+<div>
+    <h4>Comunicación</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.TipoComunicacion)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.TipoComunicacion)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Asunto)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Asunto)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.FechaComunicacion)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.FechaComunicacion)
+        </dd>
+        <dt class="col-sm-3">
+            Caso Asociado
+        </dt>
+        <dd class="col-sm-9">
+            @(Model.Caso != null ? Model.Caso.Titulo : "N/A")
+        </dd>
+        <dt class="col-sm-3">
+            Cliente Asociado
+        </dt>
+        <dd class="col-sm-9">
+            @(Model.Cliente != null ? Model.Cliente.NombreCompleto : "N/A")
+        </dd>
+        <dt class="col-sm-3">
+            Abogado que Registra
+        </dt>
+        <dd class="col-sm-9">
+            @(Model.Abogado != null ? Model.Abogado.NombreCompleto : "N/A")
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.IsDeleted)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.IsDeleted)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="ComunicacionId" />
+        <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+        <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>

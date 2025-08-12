@@ -1,0 +1,86 @@
+﻿@model IEnumerable<ProyectoIdentity.Models.Domain.Caso>
+
+@{
+    ViewData["Title"] = "Listado de Casos";
+}
+
+<h1>Listado de Casos</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Crear Nuevo Caso</a>
+</p>
+
+<table class="table table-striped table-bordered" id="casosTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Titulo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cliente)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Abogado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaInicio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Estado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TipoCaso)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Prioridad)
+            </th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Titulo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cliente.NombreCompleto) @* Accedemos al nombre del cliente *@
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Abogado.NombreCompleto) @* Accedemos al nombre del abogado *@
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaInicio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Estado)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TipoCaso)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Prioridad)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.CasoId" class="btn btn-warning btn-sm">Editar</a> |
+                    <a asp-action="Details" asp-route-id="@item.CasoId" class="btn btn-info btn-sm">Detalles</a> |
+                    <a asp-action="Delete" asp-route-id="@item.CasoId" class="btn btn-danger btn-sm">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#casosTable').DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json"
+                }
+            });
+        });
+    </script>
+}

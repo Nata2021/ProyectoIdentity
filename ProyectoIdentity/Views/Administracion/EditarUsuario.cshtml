@@ -1,0 +1,56 @@
+﻿@model ProyectoIdentity.Models.ViewModels.AsignarRolViewModel
+
+@{
+    ViewData["Title"] = $"Editar Roles de {Model.UserName}";
+}
+
+<h1>Editar Roles de Usuario</h1>
+
+<h4>@Model.UserName</h4>
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="EditarUsuario">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <input type="hidden" asp-for="UserId" />
+            <input type="hidden" asp-for="UserName" />
+
+            <div class="form-group mb-3">
+                <label class="control-label">Roles Asignados Actualmente:</label>
+                <ul>
+                    @foreach (var role in Model.RolesAsignados)
+                    {
+                        <li>@role</li>
+                    }
+                </ul>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="RolesSeleccionados" class="control-label"></label>
+                @foreach (var role in Model.TodosLosRoles)
+                {
+                    <div class="form-check">
+                        <input type="checkbox"
+                               name="RolesSeleccionados"
+                               value="@role.Value"
+                               class="form-check-input"
+                               @(Model.RolesAsignados.Contains(role.Value) ? "checked" : "") />
+                        <label class="form-check-label">@role.Text</label>
+                    </div>
+                }
+                <span asp-validation-for="RolesSeleccionados" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Guardar Cambios" class="btn btn-primary" />
+                <a asp-action="ListarUsuarios" class="btn btn-secondary">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

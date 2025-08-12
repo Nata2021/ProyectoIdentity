@@ -1,0 +1,75 @@
+﻿@model ProyectoIdentity.Models.Domain.Abogado
+
+@{
+    ViewData["Title"] = "Detalles del Abogado";
+}
+
+<h1 class="mb-4">Detalles del Abogado</h1>
+
+<div class="card shadow-sm">
+    @* Encapsular el contenido en una tarjeta *@
+    <div class="card-header bg-dark text-white">
+        <h5 class="mb-0">Información del Abogado</h5>
+    </div>
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.NombreCompleto)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.NombreCompleto)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Matricula)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Matricula)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.AreaEspecializacion)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.AreaEspecializacion)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Telefono)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Telefono)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Activo)
+            </dt>
+            <dd class="col-sm-9">
+                @if (Model.Activo)
+                {
+                    <span class="badge bg-success">Activo</span>
+                }
+                else
+                {
+                    <span class="badge bg-danger">Inactivo</span>
+                }
+            </dd>
+            <dt class="col-sm-3">
+                Usuario Asociado (ID)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.UserId)
+            </dd>
+        </dl>
+    </div>
+    <div class="card-footer d-flex justify-content-between">
+        <a asp-action="Edit" asp-route-id="@Model?.AbogadoId" class="btn btn-warning me-1">
+            <i class="bi bi-pencil me-1"></i> Editar
+        </a>
+        <a asp-action="Index" class="btn btn-secondary">
+            <i class="bi bi-arrow-left-circle me-1"></i> Volver al Listado
+        </a>
+    </div>
+</div>

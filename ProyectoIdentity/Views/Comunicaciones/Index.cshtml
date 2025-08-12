@@ -1,0 +1,80 @@
+﻿@model IEnumerable<ProyectoIdentity.Models.Domain.Comunicacion>
+
+@{
+    ViewData["Title"] = "Listado de Comunicaciones";
+}
+
+<h1>Listado de Comunicaciones</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Registrar Nueva Comunicación</a>
+</p>
+
+<table class="table table-striped table-bordered" id="comunicacionesTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaComunicacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TipoComunicacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Asunto)
+            </th>
+            <th>
+                Caso Asociado
+            </th>
+            <th>
+                Cliente Asociado
+            </th>
+            <th>
+                Registrado por
+            </th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaComunicacion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TipoComunicacion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Asunto)
+                </td>
+                <td>            
+                    @(item.Caso != null ? $"{item.Caso.Titulo} ({item.Caso.Cliente.NombreCompleto})" : "N/A")
+                </td>
+                <td>                    
+                    @(item.Cliente != null ? item.Cliente.NombreCompleto : "N/A")
+                </td>
+                <td>                    
+                    @(item.Abogado != null ? item.Abogado.NombreCompleto : "N/A")
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ComunicacionId" class="btn btn-warning btn-sm">Editar</a> |
+                    <a asp-action="Details" asp-route-id="@item.ComunicacionId" class="btn btn-info btn-sm">Detalles</a> |
+                    <a asp-action="Delete" asp-route-id="@item.ComunicacionId" class="btn btn-danger btn-sm">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#comunicacionesTable').DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json"
+                }
+            });
+        });
+    </script>
+}

@@ -74,77 +74,6 @@ namespace ProyectoIdentity.Migrations
                     b.ToTable("AspNetRoleClaims", (string)null);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("AccessFailedCount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<bool>("EmailConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("LockoutEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTimeOffset?>("LockoutEnd")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("NormalizedEmail")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("NormalizedUserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("PasswordHash")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("PhoneNumberConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("SecurityStamp")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("TwoFactorEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("UserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NormalizedEmail")
-                        .HasDatabaseName("EmailIndex");
-
-                    b.HasIndex("NormalizedUserName")
-                        .IsUnique()
-                        .HasDatabaseName("UserNameIndex")
-                        .HasFilter("[NormalizedUserName] IS NOT NULL");
-
-                    b.ToTable("AspNetUsers", (string)null);
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
                     b.Property<int>("Id")
@@ -226,20 +155,72 @@ namespace ProyectoIdentity.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("ProyectoIdentity.Models.AppUsuario", b =>
+            modelBuilder.Entity("ProyectoIdentity.Models.Domain.Abogado", b =>
                 {
-                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
+                    b.Property<int>("AbogadoId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AbogadoId"), 1L, 1);
+
+                    b.Property<bool>("Activo")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
+
+                    b.Property<string>("AreaEspecializacion")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Matricula")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("NombreCompleto")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasMaxLength(450)
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("AbogadoId");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.ToTable("Abogados");
+                });
+
+            modelBuilder.Entity("ProyectoIdentity.Models.Domain.AppUsuario", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
 
                     b.Property<string>("Ciudad")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("CodigoPais")
                         .HasColumnType("int");
 
-                    b.Property<string>("Direccion")
-                        .IsRequired()
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Direccion")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("bit");
 
                     b.Property<bool>("Estado")
                         .HasColumnType("bit");
@@ -247,23 +228,541 @@ namespace ProyectoIdentity.Migrations
                     b.Property<DateTime>("FechaNacimiento")
                         .HasColumnType("datetime2");
 
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetimeoffset");
+
                     b.Property<string>("Nombre")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("NormalizedEmail")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
                     b.Property<string>("Pais")
-                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Telefono")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Url")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedEmail")
+                        .HasDatabaseName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasDatabaseName("UserNameIndex")
+                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.ToTable("AspNetUsers", (string)null);
+                });
+
+            modelBuilder.Entity("ProyectoIdentity.Models.Domain.Audiencia", b =>
+                {
+                    b.Property<int>("AudienciaId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AudienciaId"), 1L, 1);
+
+                    b.Property<int>("CasoId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("EsRecordatorioEnviado")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<DateTime>("Fecha")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<string>("Juez")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("Lugar")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("Notas")
+                        .HasColumnType("nvarchar(MAX)");
+
+                    b.Property<string>("TipoAudiencia")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasDiscriminator().HasValue("AppUsuario");
+                    b.Property<string>("Tribunal")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.HasKey("AudienciaId");
+
+                    b.HasIndex("CasoId");
+
+                    b.ToTable("Audiencias");
+                });
+
+            modelBuilder.Entity("ProyectoIdentity.Models.Domain.Caso", b =>
+                {
+                    b.Property<int>("CasoId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CasoId"), 1L, 1);
+
+                    b.Property<int>("AbogadoId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ClienteId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Descripcion")
+                        .HasColumnType("nvarchar(MAX)");
+
+                    b.Property<string>("Estado")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("FechaCreacion")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETDATE()");
+
+                    b.Property<DateTime>("FechaInicio")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("FechaUltimaActualizacion")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<string>("Prioridad")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TipoCaso")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Titulo")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.HasKey("CasoId");
+
+                    b.HasIndex("AbogadoId");
+
+                    b.HasIndex("ClienteId");
+
+                    b.ToTable("Casos");
+                });
+
+            modelBuilder.Entity("ProyectoIdentity.Models.Domain.Cliente", b =>
+                {
+                    b.Property<int>("ClienteId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ClienteId"), 1L, 1);
+
+                    b.Property<bool>("Activo")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
+
+                    b.Property<string>("DNI_CUIT_CUIL")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("Direccion")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<DateTime>("FechaAlta")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETDATE()");
+
+                    b.Property<string>("NombreCompleto")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("Notas")
+                        .HasColumnType("nvarchar(MAX)");
+
+                    b.Property<string>("RazonSocial")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("Telefono")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("TipoCliente")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ClienteId");
+
+                    b.HasIndex("DNI_CUIT_CUIL")
+                        .IsUnique();
+
+                    b.ToTable("Clientes");
+                });
+
+            modelBuilder.Entity("ProyectoIdentity.Models.Domain.Comunicacion", b =>
+                {
+                    b.Property<int>("ComunicacionId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ComunicacionId"), 1L, 1);
+
+                    b.Property<int?>("AbogadoId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Asunto")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<int?>("CasoId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ClienteId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Detalle")
+                        .HasColumnType("nvarchar(MAX)");
+
+                    b.Property<DateTime>("FechaComunicacion")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETDATE()");
+
+                    b.Property<bool>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<string>("TipoComunicacion")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("ComunicacionId");
+
+                    b.HasIndex("AbogadoId");
+
+                    b.HasIndex("CasoId");
+
+                    b.HasIndex("ClienteId");
+
+                    b.ToTable("Comunicaciones");
+                });
+
+            modelBuilder.Entity("ProyectoIdentity.Models.Domain.Documento", b =>
+                {
+                    b.Property<int>("DocumentoId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DocumentoId"), 1L, 1);
+
+                    b.Property<int>("CasoId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("DocumentoOriginalId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("FechaSubida")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETDATE()");
+
+                    b.Property<bool>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<bool>("IsPublic")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("RutaArchivo")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("SubidoPorUserId")
+                        .HasMaxLength(450)
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Tags")
+                        .HasColumnType("nvarchar(MAX)");
+
+                    b.Property<string>("Tipo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Version")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(1);
+
+                    b.HasKey("DocumentoId");
+
+                    b.HasIndex("CasoId");
+
+                    b.HasIndex("DocumentoOriginalId");
+
+                    b.HasIndex("SubidoPorUserId");
+
+                    b.ToTable("Documentos");
+                });
+
+            modelBuilder.Entity("ProyectoIdentity.Models.Domain.MovimientoFinanciero", b =>
+                {
+                    b.Property<int>("MovimientoId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MovimientoId"), 1L, 1);
+
+                    b.Property<int?>("AbogadoId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("CasoId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Concepto")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<DateTime>("FechaMovimiento")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETDATE()");
+
+                    b.Property<bool>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<decimal>("Monto")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("TipoMovimiento")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("MovimientoId");
+
+                    b.HasIndex("AbogadoId");
+
+                    b.HasIndex("CasoId");
+
+                    b.ToTable("MovimientosFinancieros");
+                });
+
+            modelBuilder.Entity("ProyectoIdentity.Models.Domain.Notificacion", b =>
+                {
+                    b.Property<int>("NotificacionId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("NotificacionId"), 1L, 1);
+
+                    b.Property<bool>("EsLeida")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<DateTime>("FechaNotificacion")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETDATE()");
+
+                    b.Property<bool>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<string>("Mensaje")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(MAX)");
+
+                    b.Property<string>("OrigenId")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("TipoNotificacion")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasMaxLength(450)
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("NotificacionId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Notificaciones");
+                });
+
+            modelBuilder.Entity("ProyectoIdentity.Models.Domain.RegistroTiempo", b =>
+                {
+                    b.Property<int>("RegistroTiempoId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RegistroTiempoId"), 1L, 1);
+
+                    b.Property<int>("AbogadoId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("CasoId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("DescripcionActividad")
+                        .HasColumnType("nvarchar(MAX)");
+
+                    b.Property<bool>("Facturable")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("Fecha")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETDATE()");
+
+                    b.Property<decimal>("Horas")
+                        .HasColumnType("decimal(5,2)");
+
+                    b.Property<bool>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.HasKey("RegistroTiempoId");
+
+                    b.HasIndex("AbogadoId");
+
+                    b.HasIndex("CasoId");
+
+                    b.ToTable("RegistrosTiempo");
+                });
+
+            modelBuilder.Entity("ProyectoIdentity.Models.Domain.Tarea", b =>
+                {
+                    b.Property<int>("TareaId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TareaId"), 1L, 1);
+
+                    b.Property<int>("AsignadoA")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CasoId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CreadaPorUserId")
+                        .HasMaxLength(450)
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Descripcion")
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("Estado")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("FechaCompletado")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("FechaCreacion")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETDATE()");
+
+                    b.Property<DateTime>("FechaLimite")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<int>("PorcentajeProgreso")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
+
+                    b.Property<string>("Prioridad")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TipoTarea")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("TareaId");
+
+                    b.HasIndex("AsignadoA");
+
+                    b.HasIndex("CasoId");
+
+                    b.HasIndex("CreadaPorUserId");
+
+                    b.ToTable("Tareas");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -277,7 +776,7 @@ namespace ProyectoIdentity.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("ProyectoIdentity.Models.Domain.AppUsuario", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -286,7 +785,7 @@ namespace ProyectoIdentity.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("ProyectoIdentity.Models.Domain.AppUsuario", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -301,7 +800,7 @@ namespace ProyectoIdentity.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("ProyectoIdentity.Models.Domain.AppUsuario", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -310,11 +809,204 @@ namespace ProyectoIdentity.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("ProyectoIdentity.Models.Domain.AppUsuario", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("ProyectoIdentity.Models.Domain.Abogado", b =>
+                {
+                    b.HasOne("ProyectoIdentity.Models.Domain.AppUsuario", "AppUsuario")
+                        .WithOne("Abogado")
+                        .HasForeignKey("ProyectoIdentity.Models.Domain.Abogado", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AppUsuario");
+                });
+
+            modelBuilder.Entity("ProyectoIdentity.Models.Domain.Audiencia", b =>
+                {
+                    b.HasOne("ProyectoIdentity.Models.Domain.Caso", "Caso")
+                        .WithMany("Audiencias")
+                        .HasForeignKey("CasoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Caso");
+                });
+
+            modelBuilder.Entity("ProyectoIdentity.Models.Domain.Caso", b =>
+                {
+                    b.HasOne("ProyectoIdentity.Models.Domain.Abogado", "Abogado")
+                        .WithMany("CasosAsignados")
+                        .HasForeignKey("AbogadoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ProyectoIdentity.Models.Domain.Cliente", "Cliente")
+                        .WithMany("Casos")
+                        .HasForeignKey("ClienteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Abogado");
+
+                    b.Navigation("Cliente");
+                });
+
+            modelBuilder.Entity("ProyectoIdentity.Models.Domain.Comunicacion", b =>
+                {
+                    b.HasOne("ProyectoIdentity.Models.Domain.Abogado", "Abogado")
+                        .WithMany("ComunicacionesRegistradas")
+                        .HasForeignKey("AbogadoId");
+
+                    b.HasOne("ProyectoIdentity.Models.Domain.Caso", "Caso")
+                        .WithMany("Comunicaciones")
+                        .HasForeignKey("CasoId");
+
+                    b.HasOne("ProyectoIdentity.Models.Domain.Cliente", "Cliente")
+                        .WithMany("Comunicaciones")
+                        .HasForeignKey("ClienteId");
+
+                    b.Navigation("Abogado");
+
+                    b.Navigation("Caso");
+
+                    b.Navigation("Cliente");
+                });
+
+            modelBuilder.Entity("ProyectoIdentity.Models.Domain.Documento", b =>
+                {
+                    b.HasOne("ProyectoIdentity.Models.Domain.Caso", "Caso")
+                        .WithMany("Documentos")
+                        .HasForeignKey("CasoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ProyectoIdentity.Models.Domain.Documento", "DocumentoOriginal")
+                        .WithMany()
+                        .HasForeignKey("DocumentoOriginalId");
+
+                    b.HasOne("ProyectoIdentity.Models.Domain.AppUsuario", "SubidoPor")
+                        .WithMany()
+                        .HasForeignKey("SubidoPorUserId");
+
+                    b.Navigation("Caso");
+
+                    b.Navigation("DocumentoOriginal");
+
+                    b.Navigation("SubidoPor");
+                });
+
+            modelBuilder.Entity("ProyectoIdentity.Models.Domain.MovimientoFinanciero", b =>
+                {
+                    b.HasOne("ProyectoIdentity.Models.Domain.Abogado", "Abogado")
+                        .WithMany("MovimientosRegistrados")
+                        .HasForeignKey("AbogadoId");
+
+                    b.HasOne("ProyectoIdentity.Models.Domain.Caso", "Caso")
+                        .WithMany("MovimientosFinancieros")
+                        .HasForeignKey("CasoId");
+
+                    b.Navigation("Abogado");
+
+                    b.Navigation("Caso");
+                });
+
+            modelBuilder.Entity("ProyectoIdentity.Models.Domain.Notificacion", b =>
+                {
+                    b.HasOne("ProyectoIdentity.Models.Domain.AppUsuario", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("ProyectoIdentity.Models.Domain.RegistroTiempo", b =>
+                {
+                    b.HasOne("ProyectoIdentity.Models.Domain.Abogado", "Abogado")
+                        .WithMany("RegistrosDeTiempo")
+                        .HasForeignKey("AbogadoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ProyectoIdentity.Models.Domain.Caso", "Caso")
+                        .WithMany("RegistrosDeTiempo")
+                        .HasForeignKey("CasoId");
+
+                    b.Navigation("Abogado");
+
+                    b.Navigation("Caso");
+                });
+
+            modelBuilder.Entity("ProyectoIdentity.Models.Domain.Tarea", b =>
+                {
+                    b.HasOne("ProyectoIdentity.Models.Domain.Abogado", "AbogadoAsignado")
+                        .WithMany("TareasAsignadas")
+                        .HasForeignKey("AsignadoA")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ProyectoIdentity.Models.Domain.Caso", "Caso")
+                        .WithMany("Tareas")
+                        .HasForeignKey("CasoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ProyectoIdentity.Models.Domain.AppUsuario", "CreadaPor")
+                        .WithMany()
+                        .HasForeignKey("CreadaPorUserId");
+
+                    b.Navigation("AbogadoAsignado");
+
+                    b.Navigation("Caso");
+
+                    b.Navigation("CreadaPor");
+                });
+
+            modelBuilder.Entity("ProyectoIdentity.Models.Domain.Abogado", b =>
+                {
+                    b.Navigation("CasosAsignados");
+
+                    b.Navigation("ComunicacionesRegistradas");
+
+                    b.Navigation("MovimientosRegistrados");
+
+                    b.Navigation("RegistrosDeTiempo");
+
+                    b.Navigation("TareasAsignadas");
+                });
+
+            modelBuilder.Entity("ProyectoIdentity.Models.Domain.AppUsuario", b =>
+                {
+                    b.Navigation("Abogado");
+                });
+
+            modelBuilder.Entity("ProyectoIdentity.Models.Domain.Caso", b =>
+                {
+                    b.Navigation("Audiencias");
+
+                    b.Navigation("Comunicaciones");
+
+                    b.Navigation("Documentos");
+
+                    b.Navigation("MovimientosFinancieros");
+
+                    b.Navigation("RegistrosDeTiempo");
+
+                    b.Navigation("Tareas");
+                });
+
+            modelBuilder.Entity("ProyectoIdentity.Models.Domain.Cliente", b =>
+                {
+                    b.Navigation("Casos");
+
+                    b.Navigation("Comunicaciones");
                 });
 #pragma warning restore 612, 618
         }

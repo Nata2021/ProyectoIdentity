@@ -1,0 +1,57 @@
+﻿@model ProyectoIdentity.Models.Domain.RegistroTiempo
+
+@{
+    ViewData["Title"] = "Eliminar Registro de Tiempo";
+}
+
+<h1>Eliminar Registro de Tiempo</h1>
+
+<h3>¿Está seguro de que desea eliminar este registro de tiempo?</h3>
+<div>
+    <h4>Registro de Tiempo</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Fecha)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Fecha)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Abogado)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Abogado.NombreCompleto)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Horas)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Horas)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.DescripcionActividad)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.DescripcionActividad)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Facturable)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Facturable)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.IsDeleted)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.IsDeleted)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="RegistroTiempoId" />
+        <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+        <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>

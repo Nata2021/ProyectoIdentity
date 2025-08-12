@@ -1,18 +1,157 @@
+/* ProyectoIdentity/wwwroot/css/site.css */
+
+/* Variables CSS de Bootstrap para personalización global */
+/* Puedes ajustar estos colores a la paleta deseada para EJ Diaz */
+:root {
+    --bs-primary: #7B4FFF; /* Un púrpura vibrante para el color principal (botones, enlaces) */
+    --bs-secondary: #6c757d; /* Gris secundario para elementos neutros */
+    --bs-success: #28a745; /* Verde para éxito */
+    --bs-info: #17a2b8; /* Azul claro para información */
+    --bs-warning: #ffc107; /* Amarillo para advertencias */
+    --bs-danger: #dc3545; /* Rojo para peligro */
+    --bs-dark: #212529; /* Negro oscuro para fondos de barra de navegación */
+    --bs-light: #f8f9fa; /* Blanco grisáceo claro */
+    --bs-body-color: #343a40; /* Color de texto general */
+    --bs-body-bg: #ffffff; /* Fondo blanco del cuerpo */
+    --bs-font-sans-serif: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; /* Puedes usar Google Fonts aquí */
+}
+
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
+}
+
+/* Estilos globales para layout full-height */
+html, body {
+    height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    display: flex;
+    flex-direction: column;
+    font-family: var(--bs-font-sans-serif); /* Usar la fuente definida */
+    color: var(--bs-body-color);
+    background-color: var(--bs-body-bg); /* Usar la variable de fondo */
 }
+
+main {
+    flex: 1;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+/* Personalización del footer */
+footer {
+    background-color: var(--bs-dark); /* Fondo oscuro para el footer */
+    padding: 1rem 0;
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--bs-light); /* Texto claro en footer oscuro */
+}
+
+/* Estilos para los botones con el color principal del estudio */
+.btn-primary {
+    background-color: var(--bs-primary);
+    border-color: var(--bs-primary);
+}
+
+    .btn-primary:hover {
+        background-color: darken(var(--bs-primary), 10%); /* No funciona directamente en CSS puro, necesitarías SASS/LESS o un color fijo */
+        border-color: darken(var(--bs-primary), 10%);
+    }
+
+/* Estilos para el navbar (ya está bg-black, que es --bs-dark) */
+.navbar-dark .navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 0.85); /* Un poco más claro */
+}
+
+    .navbar-dark .navbar-nav .nav-link:hover {
+        color: rgba(255, 255, 255, 1);
+    }
+
+/* Estilos para tarjetas o paneles */
+.card {
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.5rem;
+}
+
+.card-header.bg-dark {
+    background-color: var(--bs-dark) !important;
+    color: var(--bs-light);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+    border-top-left-radius: calc(0.5rem - 1px);
+    border-top-right-radius: calc(0.5rem - 1px);
+}
+/* Sombras más pronunciadas para las tarjetas */
+.card {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important; /* Más fuerte que la predeterminada */
+}
+
+/* Campos de formulario más limpios */
+.form-control {
+    border-radius: 0.35rem; /* Un poco más de redondeo */
+    border-color: #ced4da; /* Color de borde estándar */
+}
+
+    .form-control:focus {
+        border-color: var(--bs-primary); /* Borde primario al enfocar */
+        box-shadow: 0 0 0 0.25rem rgba(123, 79, 255, 0.25); /* Sombra de enfoque con color primario */
+    }
+
+/* Botones con bordes redondeados y sombreados */
+.btn {
+    border-radius: 0.35rem; /* Redondeo consistente */
+    transition: all 0.2s ease-in-out; /* Transición suave en hover */
+}
+
+.btn-primary {
+    box-shadow: 0 0.125rem 0.25rem rgba(123, 79, 255, 0.2);
+}
+
+    .btn-primary:hover {
+        transform: translateY(-1px); /* Pequeño efecto al pasar el ratón */
+        box-shadow: 0 0.25rem 0.5rem rgba(123, 79, 255, 0.3);
+    }
+/* Personalización de los botones */
+.btn {
+    border-radius: 0.35rem; /* Redondeo consistente */
+    transition: all 0.2s ease-in-out; /* Transición suave en hover */
+}
+
+/* Estilo para btn-primary (violeta) */
+.btn-primary {
+    background-color: var(--bs-primary);
+    border-color: var(--bs-primary);
+    box-shadow: 0 0.125rem 0.25rem rgba(123, 79, 255, 0.2); /* Sombra suave */
+}
+
+    .btn-primary:hover {
+        background-color: #6a4fe6; /* Un violeta ligeramente más oscuro al pasar el mouse */
+        border-color: #6a4fe6;
+        transform: translateY(-1px); /* Pequeño efecto de "elevación" */
+        box-shadow: 0 0.25rem 0.5rem rgba(123, 79, 255, 0.3); /* Sombra más pronunciada al pasar el mouse */
+    }
+
+/* Estilo para btn-success (verde) */
+.btn-success {
+    background-color: var(--bs-success); /* Usar la variable de Bootstrap */
+    border-color: var(--bs-success);
+    box-shadow: 0 0.125rem 0.25rem rgba(40, 167, 69, 0.2); /* Sombra suave */
+}
+
+    .btn-success:hover {
+        background-color: #218838; /* Un verde ligeramente más oscuro al pasar el mouse */
+        border-color: #218838;
+        transform: translateY(-1px); /* Pequeño efecto de "elevación" */
+        box-shadow: 0 0.25rem 0.5rem rgba(40, 167, 69, 0.3); /* Sombra más pronunciada al pasar el mouse */
+    }

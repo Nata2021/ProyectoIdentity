@@ -1,0 +1,63 @@
+﻿@model ProyectoIdentity.Models.Domain.Cliente
+
+@{
+    ViewData["Title"] = "Eliminar Cliente";
+}
+
+<h1>Eliminar Cliente</h1>
+
+<h3>¿Está seguro de que desea eliminar este cliente?</h3>
+<div>
+    <h4>Cliente</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.NombreCompleto)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.NombreCompleto)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.DNI_CUIT_CUIL)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.DNI_CUIT_CUIL)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Telefono)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Telefono)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.TipoCliente)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.TipoCliente)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.RazonSocial)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.RazonSocial)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Activo)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Activo)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="ClienteId" />
+        <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+        <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>

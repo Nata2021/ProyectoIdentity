@@ -1,0 +1,81 @@
+﻿@model ProyectoIdentity.Models.ViewModels.ComunicacionCreateEditViewModel
+
+@{
+    ViewData["Title"] = "Registrar Comunicación";
+}
+
+<h1>Registrar Comunicación</h1>
+
+<h4>Nueva Comunicación</h4>
+<hr />
+<div class="row">
+    <div class="col-md-8">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group mb-3">
+                <label asp-for="TipoComunicacion" class="control-label"></label>
+                <input asp-for="TipoComunicacion" class="form-control" placeholder="Ej. Llamada, Email, Reunión" />
+                <span asp-validation-for="TipoComunicacion" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="Asunto" class="control-label"></label>
+                <input asp-for="Asunto" class="form-control" />
+                <span asp-validation-for="Asunto" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="Detalle" class="control-label"></label>
+                <textarea asp-for="Detalle" class="form-control" rows="4"></textarea>
+                <span asp-validation-for="Detalle" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="FechaComunicacion" class="control-label"></label>
+                <input asp-for="FechaComunicacion" class="form-control" type="datetime-local" />
+                <span asp-validation-for="FechaComunicacion" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="CasoId" class="control-label"></label>
+                <select asp-for="CasoId" asp-items="@Model.CasosList" class="form-control">
+                    <option value="">-- Sin Caso Asociado --</option>
+                </select>
+                <span asp-validation-for="CasoId" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="ClienteId" class="control-label"></label>
+                <select asp-for="ClienteId" asp-items="@Model.ClientesList" class="form-control">
+                    <option value="">-- Sin Cliente Asociado --</option>
+                </select>
+                <span asp-validation-for="ClienteId" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="AbogadoId" class="control-label"></label>
+                <select asp-for="AbogadoId" asp-items="@Model.AbogadosList" class="form-control">
+                    <option value="">-- Sin Abogado Registrador --</option>
+                </select>
+                <span asp-validation-for="AbogadoId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Registrar" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            flatpickr("#FechaComunicacion", {
+                enableTime: true,
+                dateFormat: "Y-m-d H:i",
+                altInput: true,
+                altFormat: "F j, Y h:i K",
+                time_24hr: true
+            });
+        });
+    </script>
+}

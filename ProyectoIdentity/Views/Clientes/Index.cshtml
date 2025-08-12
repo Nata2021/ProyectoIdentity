@@ -1,0 +1,80 @@
+﻿@model IEnumerable<ProyectoIdentity.Models.Domain.Cliente>
+
+@{
+    ViewData["Title"] = "Listado de Clientes";
+}
+
+<h1>Listado de Clientes</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Crear Nuevo Cliente</a>
+</p>
+
+<table class="table table-striped table-bordered" id="clientesTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NombreCompleto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DNI_CUIT_CUIL)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Telefono)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TipoCliente)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Activo)
+            </th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NombreCompleto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DNI_CUIT_CUIL)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Telefono)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TipoCliente)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Activo)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ClienteId" class="btn btn-warning btn-sm">Editar</a> |
+                    <a asp-action="Details" asp-route-id="@item.ClienteId" class="btn btn-info btn-sm">Detalles</a> |
+                    <a asp-action="Delete" asp-route-id="@item.ClienteId" class="btn btn-danger btn-sm">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#clientesTable').DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json"
+                }
+            });
+        });
+    </script>
+}

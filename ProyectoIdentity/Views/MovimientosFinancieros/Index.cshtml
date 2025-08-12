@@ -1,0 +1,80 @@
+﻿@model IEnumerable<ProyectoIdentity.Models.Domain.MovimientoFinanciero>
+
+@{
+    ViewData["Title"] = "Listado de Movimientos Financieros";
+}
+
+<h1>Listado de Movimientos Financieros</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Registrar Nuevo Movimiento</a>
+</p>
+
+<table class="table table-striped table-bordered" id="movimientosTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaMovimiento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TipoMovimiento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Concepto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Monto)
+            </th>
+            <th>
+                Caso Asociado
+            </th>
+            <th>
+                Registrado por
+            </th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaMovimiento)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TipoMovimiento)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Concepto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Monto)
+                </td>
+                <td>                    
+                    @(item.Caso != null ? $"{item.Caso.Titulo} ({item.Caso.Cliente.NombreCompleto})" : "N/A")
+                </td>
+                <td>
+                    @(item.Abogado != null ? item.Abogado.NombreCompleto : "N/A")
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.MovimientoId" class="btn btn-warning btn-sm">Editar</a> |
+                    <a asp-action="Details" asp-route-id="@item.MovimientoId" class="btn btn-info btn-sm">Detalles</a> |
+                    <a asp-action="Delete" asp-route-id="@item.MovimientoId" class="btn btn-danger btn-sm">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#movimientosTable').DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json"
+                }
+            });
+        });
+    </script>
+}

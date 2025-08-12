@@ -1,0 +1,169 @@
+﻿@model ProyectoIdentity.Models.ViewModels.DashboardViewModel
+
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<h1 class="mb-4">Dashboard del Estudio</h1>
+
+<div class="row">
+    <div class="col-md-3 mb-4">
+        <div class="card text-white bg-primary">
+            <div class="card-body">
+                <h5 class="card-title">Casos Activos</h5>
+                <p class="card-text fs-2">@Model.TotalCasosActivos</p>
+                <a asp-controller="Casos" asp-action="Index" class="btn btn-light btn-sm mt-2">Ver Casos</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 mb-4">
+        <div class="card text-white bg-warning">
+            <div class="card-body">
+                <h5 class="card-title">Tareas Pendientes</h5>
+                <p class="card-text fs-2">@Model.TotalTareasPendientes</p>
+                <a asp-controller="Tareas" asp-action="Index" class="btn btn-light btn-sm mt-2">Ver Tareas</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 mb-4">
+        <div class="card text-white bg-info">
+            <div class="card-body">
+                <h5 class="card-title">Próximas Audiencias</h5>
+                <p class="card-text fs-2">@Model.TotalProximasAudiencias</p>
+                <a asp-controller="Audiencias" asp-action="Index" class="btn btn-light btn-sm mt-2">Ver Audiencias</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 mb-4">
+        <div class="card text-white bg-success">
+            <div class="card-body">
+                <h5 class="card-title">Notificaciones No Leídas</h5>
+                <p class="card-text fs-2">@Model.TotalNotificacionesNoLeidas</p>
+                <a asp-controller="Notificaciones" asp-action="Index" class="btn btn-light btn-sm mt-2">Ver Notificaciones</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-6 mb-4">
+        <div class="card">
+            <div class="card-header bg-dark text-white">
+                <h5 class="mb-0">Mis Próximas Audiencias</h5>
+            </div>
+            <div class="card-body">
+                @if (Model.MisProximasAudiencias != null && Model.MisProximasAudiencias.Any())
+                {
+                    <ul class="list-group list-group-flush">
+                        @foreach (var audiencia in Model.MisProximasAudiencias)
+                        {
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div>
+                                    <strong>@audiencia.Caso.Titulo</strong> - @audiencia.TipoAudiencia<br />
+                                    <small>@audiencia.Fecha.ToString("dd/MM/yyyy HH:mm") en @audiencia.Lugar</small>
+                                </div>
+                                <a asp-controller="Audiencias" asp-action="Details" asp-route-id="@audiencia.AudienciaId" class="btn btn-sm btn-outline-primary">Ver</a>
+                            </li>
+                        }
+                    </ul>
+                }
+                else
+                {
+                    <p class="card-text text-muted">No hay próximas audiencias registradas para ti.</p>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 mb-4">
+        <div class="card">
+            <div class="card-header bg-dark text-white">
+                <h5 class="mb-0">Mis Tareas Pendientes</h5>
+            </div>
+            <div class="card-body">
+                @if (Model.MisTareasPendientes != null && Model.MisTareasPendientes.Any())
+                {
+                    <ul class="list-group list-group-flush">
+                        @foreach (var tarea in Model.MisTareasPendientes)
+                        {
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div>
+                                    <strong>@tarea.Descripcion</strong> - Caso: @tarea.Caso.Titulo<br />
+                                    <small>Fecha Límite: @tarea.FechaLimite.ToString("dd/MM/yyyy")</small>
+                                </div>
+                                <a asp-controller="Tareas" asp-action="Details" asp-route-id="@tarea.TareaId" class="btn btn-sm btn-outline-primary">Ver</a>
+                            </li>
+                        }
+                    </ul>
+                }
+                else
+                {
+                    <p class="card-text text-muted">No hay tareas pendientes asignadas a ti.</p>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-6 mb-4">
+        <div class="card">
+            <div class="card-header bg-dark text-white">
+                <h5 class="mb-0">Últimas Notificaciones</h5>
+            </div>
+            <div class="card-body">
+                @if (Model.UltimasNotificaciones != null && Model.UltimasNotificaciones.Any())
+                {
+                    <ul class="list-group list-group-flush">
+                        @foreach (var notificacion in Model.UltimasNotificaciones)
+                        {
+                            <li class="list-group-item d-flex justify-content-between align-items-center @(notificacion.EsLeida ? "" : "bg-light")">
+                                <div>
+                                    <strong>@notificacion.Mensaje</strong><br />
+                                    <small>@notificacion.FechaNotificacion.ToString("dd/MM/yyyy HH:mm")</small>
+                                </div>
+                                @if (!notificacion.EsLeida)
+                                {
+                                    <span class="badge bg-primary rounded-pill">Nueva</span>
+                                }
+                            </li>
+                        }
+                    </ul>
+                }
+                else
+                {
+                    <p class="card-text text-muted">No hay notificaciones recientes.</p>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 mb-4">
+        <div class="card">
+            <div class="card-header bg-dark text-white">
+                <h5 class="mb-0">Casos Recientemente Actualizados</h5>
+            </div>
+            <div class="card-body">
+                @if (Model.CasosRecientementeActualizados != null && Model.CasosRecientementeActualizados.Any())
+                {
+                    <ul class="list-group list-group-flush">
+                        @foreach (var caso in Model.CasosRecientementeActualizados)
+                        {
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div>
+                                    <strong>@caso.Titulo</strong> - Cliente: @caso.Cliente.NombreCompleto<br />
+                                    <small>Última Actualización: @(caso.FechaUltimaActualizacion?.ToString("dd/MM/yyyy HH:mm") ?? caso.FechaCreacion.ToString("dd/MM/yyyy HH:mm"))</small>
+                                </div>
+                                <a asp-controller="Casos" asp-action="Details" asp-route-id="@caso.CasoId" class="btn btn-sm btn-outline-primary">Ver</a>
+                            </li>
+                        }
+                    </ul>
+                }
+                else
+                {
+                    <p class="card-text text-muted">No hay casos actualizados recientemente.</p>
+                }
+            </div>
+        </div>
+    </div>
+</div>

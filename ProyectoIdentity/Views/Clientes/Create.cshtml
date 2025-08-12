@@ -1,0 +1,72 @@
+﻿@model ProyectoIdentity.Models.ViewModels.ClienteCreateViewModel
+
+@{
+    ViewData["Title"] = "Crear Cliente";
+}
+
+<h1>Crear Cliente</h1>
+
+<h4>Nuevo Cliente</h4>
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group mb-3">
+                <label asp-for="NombreCompleto" class="control-label"></label>
+                <input asp-for="NombreCompleto" class="form-control" />
+                <span asp-validation-for="NombreCompleto" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="DNI_CUIT_CUIL" class="control-label"></label>
+                <input asp-for="DNI_CUIT_CUIL" class="form-control" />
+                <span asp-validation-for="DNI_CUIT_CUIL" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="Telefono" class="control-label"></label>
+                <input asp-for="Telefono" class="form-control" />
+                <span asp-validation-for="Telefono" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="Direccion" class="control-label"></label>
+                <input asp-for="Direccion" class="form-control" />
+                <span asp-validation-for="Direccion" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="TipoCliente" class="control-label"></label>
+                <select asp-for="TipoCliente" asp-items="Html.GetEnumSelectList<ProyectoIdentity.Models.Domain.Enums.TipoCliente>()" class="form-control"></select>
+                <span asp-validation-for="TipoCliente" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="RazonSocial" class="control-label"></label>
+                <input asp-for="RazonSocial" class="form-control" />
+                <span asp-validation-for="RazonSocial" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="Notas" class="control-label"></label>
+                <textarea asp-for="Notas" class="form-control"></textarea>
+                <span asp-validation-for="Notas" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check mb-3">
+                <input class="form-check-input" asp-for="Activo" />
+                <label class="form-check-label" asp-for="Activo"></label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Crear" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,74 @@
+﻿@model IEnumerable<ProyectoIdentity.Models.Domain.Abogado>
+
+@{
+    ViewData["Title"] = "Listado de Abogados";
+}
+
+<h1 class="mb-4">Listado de Abogados</h1>
+
+<p class="mb-3">
+    <a asp-action="Create" class="btn btn-success">
+        <i class="bi bi-plus-circle me-1"></i> Crear Nuevo Abogado
+    </a>
+</p>
+
+<div class="card shadow-sm">
+    @* Encapsular la tabla en una tarjeta *@
+    <div class="card-body">
+        <table class="table table-striped table-hover table-bordered" id="abogadosTable">
+            <thead class="bg-dark text-white">
+                @* Fondo oscuro para encabezados *@
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.NombreCompleto)</th>
+                    <th>@Html.DisplayNameFor(model => model.Matricula)</th>
+                    <th>@Html.DisplayNameFor(model => model.AreaEspecializacion)</th>
+                    <th>@Html.DisplayNameFor(model => model.Email)</th>
+                    <th>@Html.DisplayNameFor(model => model.Telefono)</th>
+                    <th>@Html.DisplayNameFor(model => model.Activo)</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.NombreCompleto)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Matricula)</td>
+                        <td>@Html.DisplayFor(modelItem => item.AreaEspecializacion)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Telefono)</td>
+                        <td>
+                            @if (item.Activo)
+                            {
+                                <span class="badge bg-success">Activo</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-danger">Inactivo</span>
+                            }
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.AbogadoId" class="btn btn-warning btn-sm me-1" title="Editar"><i class="bi bi-pencil"></i></a>
+                            <a asp-action="Details" asp-route-id="@item.AbogadoId" class="btn btn-info btn-sm me-1" title="Detalles"><i class="bi bi-info-circle"></i></a>
+                            <a asp-action="Delete" asp-route-id="@item.AbogadoId" class="btn btn-danger btn-sm" title="Eliminar (Desactivar)"><i class="bi bi-trash"></i></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#abogadosTable').DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json"
+                },
+                "order": [[0, "asc"]] // Ordenar por nombre por defecto
+            });
+        });
+    </script>
+}

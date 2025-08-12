@@ -1,0 +1,45 @@
+﻿@model ProyectoIdentity.Models.Domain.Documento
+
+@{
+    ViewData["Title"] = "Eliminar Documento";
+}
+
+<h1>Eliminar Documento</h1>
+
+<h3>¿Está seguro de que desea eliminar este documento?</h3>
+<div>
+    <h4>Documento</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Caso)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Caso.Titulo) (@Html.DisplayFor(model => model.Caso.Cliente.NombreCompleto))
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Tipo)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Tipo)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.IsDeleted)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.IsDeleted)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="DocumentoId" />
+        <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+        <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>

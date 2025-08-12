@@ -1,0 +1,51 @@
+﻿@model ProyectoIdentity.Models.Domain.Tarea
+
+@{
+    ViewData["Title"] = "Eliminar Tarea";
+}
+
+<h1>Eliminar Tarea</h1>
+
+<h3>¿Está seguro de que desea eliminar esta tarea?</h3>
+<div>
+    <h4>Tarea</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Caso)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Caso.Titulo)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.AbogadoAsignado)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.AbogadoAsignado.NombreCompleto)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Estado)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Estado)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.IsDeleted)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.IsDeleted)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="TareaId" />
+        <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+        <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>

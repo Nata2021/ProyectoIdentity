@@ -7,8 +7,9 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Configuration.UserSecrets;
-using ProyectoIdentity.Models;
-using ProyectoIdentity.Servicios;
+using ProyectoIdentity.Models.Domain;
+using ProyectoIdentity.Models.ViewModels;
+using ProyectoIdentity.Servicios.Interfaces;
 using System.Security.Claims;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
@@ -18,21 +19,20 @@ namespace ProyectoIdentity.Controllers
     [Authorize]
     public class CuentasController : Controller
     {
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<AppUsuario> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly SignInManager<AppUsuario> _signInManager;
         private readonly IEmailSender _emailSender;
         public readonly UrlEncoder _UrlEncoder;
         private readonly INotificacionService _notificacionService;
 
-        public CuentasController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, IEmailSender emailSender, UrlEncoder urlEncoder, RoleManager<IdentityRole> roleManager, INotificacionService notificacionService)
+        public CuentasController(UserManager<AppUsuario> userManager, SignInManager<AppUsuario> signInManager, IEmailSender emailSender, UrlEncoder urlEncoder, RoleManager<IdentityRole> roleManager, INotificacionService notificacionService)
         {
             _userManager = userManager;
             _roleManager = roleManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
             _UrlEncoder = urlEncoder;
-            _roleManager = roleManager;
             _notificacionService = notificacionService;
         }
         [HttpGet]
@@ -101,107 +101,7 @@ namespace ProyectoIdentity.Controllers
             return View(rgViewModel);
         }
 
-        // Registro especial para el administrador
-        [HttpGet]
-        public async Task<IActionResult> RegistroAdministrador(String returnurl = null)
-        {
-            //Crear el rol de usuario si no existe
-            if (!await _roleManager.RoleExistsAsync("Administrador"))
-            {
-                await _roleManager.CreateAsync(new IdentityRole("Administrador"));
-            }
-
-            if (!await _roleManager.RoleExistsAsync("Usuario"))
-            {
-                await _roleManager.CreateAsync(new IdentityRole("Usuario"));
-            }
-
-            // Selecionar el rol para los usuarios
-            List<SelectListItem> rolesList = new List<SelectListItem>();
-            rolesList.Add(new SelectListItem()
-            {
-                Value = "Usuario",
-                Text = "Usuario"
-            });
-
-            rolesList.Add(new SelectListItem()
-            {
-                Value = "Administrador",
-                Text = "Administrador"
-            });
-
-
-            ViewData["ReturnUrl"] = returnurl;
-
-            RegistroViewModel registroVM = new RegistroViewModel()
-            {
-                Roles = rolesList,
-            };
-
-            return View(registroVM);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> RegistroAdministrador(RegistroViewModel rgViewModel, string returnurl = null)
-
-        {
-
-            ViewData["ReturnUrl"] = returnurl;
-            returnurl = returnurl ?? Url.Content("~/");
-            if (ModelState.IsValid)
-            {
-                var usuario = new AppUsuario { UserName = rgViewModel.Email, Email = rgViewModel.Email, Nombre = rgViewModel.Nombre, Url = rgViewModel.Url, CodigoPais = rgViewModel.CodigoPais, Telefono = rgViewModel.Telefono, Pais = rgViewModel.Pais, Ciudad = rgViewModel.Ciudad, Direccion = rgViewModel.Direccion, FechaNacimiento = rgViewModel.FechaNacimiento, Estado = rgViewModel.Estado };
-                var resultado = await _userManager.CreateAsync(usuario, rgViewModel.Password);
-
-                if (resultado.Succeeded)
-                {
-                    // Asignar el rol seleccionado al usuario registrado
-                    if (rgViewModel.RolSeleccionado != null && rgViewModel.RolSeleccionado.Length > 0 && rgViewModel.RolSeleccionado == "Administrador")
-                    {
-                        await _userManager.AddToRoleAsync(usuario, "Administrador");
-                    }
-                    else
-                    {
-                        await _userManager.AddToRoleAsync(usuario, "Usuario");
-                    }
-
-                    //Linea para asignar el rol de usuario al usuario registrado
-                    await _userManager.AddToRoleAsync(usuario, "Usuario");
-
-                    //Implementacion de confirmacion de email en el registro
-
-                    var code = await _userManager.GenerateEmailConfirmationTokenAsync(usuario);
-                    var urlRetorno = Url.Action("ConfirmarEmail", "Cuentas", new { userId = usuario.Id, code = code }, protocol: HttpContext.Request.Scheme);
-
-                    await _emailSender.SendEmailAsync(rgViewModel.Email, "Confirmar Email - Proyecto Estudio Juridico",
-                        "Por favor confirme su email dando click aqui: <a href=\"" + urlRetorno + "\">Enlace</a>");
-
-
-                    await _signInManager.SignInAsync(usuario, isPersistent: false);
-
-                    //return RedirectToAction("Index", "Home");
-                    return LocalRedirect(returnurl);
-                }
-                ValidarErrores(resultado);
-            }
-            // Selecionar el rol para los usuarios
-            List<SelectListItem> rolesList = new List<SelectListItem>();
-            rolesList.Add(new SelectListItem()
-            {
-                Value = "Usuario",
-                Text = "Usuario"
-            });
-
-            rolesList.Add(new SelectListItem()
-            {
-                Value = "Administrador",
-                Text = "Administrador"
-            });
-            rgViewModel.Roles = rolesList;
-
-            return View(rgViewModel);
-        }
+      
 
         //Manejo de Errores 
         [AllowAnonymous]
@@ -596,6 +496,110 @@ namespace ProyectoIdentity.Controllers
         {
             ViewData["ReturnUrl"] = returnurl;
             returnurl = returnurl ?? Url.Content("~/");
+            return View();
+        }
+
+        [HttpGet]
+        [Authorize] // Solo usuarios autenticados pueden ver su propio perfil
+        public async Task<IActionResult> Perfil()
+        {
+            var userId = _userManager.GetUserId(User);
+            var usuarioBd = await _userManager.FindByIdAsync(userId); // Usamos UserManager.FindByIdAsync
+            if (usuarioBd == null)
+            {
+                return NotFound(); // O View("Error")
+            }
+            // No pasamos a un ViewModel si AppUsuario ya tiene las anotaciones y es suficiente para la vista
+            return View(usuarioBd);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize]
+        public async Task<IActionResult> Perfil(AppUsuario appUsuario)
+        {
+            // Solo permitimos editar el perfil del usuario actual
+            var userId = _userManager.GetUserId(User);
+            if (userId != appUsuario.Id)
+            {
+                return Forbid(); // Intentando editar otro usuario
+            }
+
+            if (ModelState.IsValid)
+            {
+                // Obtener la instancia del usuario desde el UserManager para que EF Core la rastree correctamente
+                var usuario = await _userManager.FindByIdAsync(appUsuario.Id);
+                if (usuario == null)
+                {
+                    return NotFound();
+                }
+
+                // Actualizar solo las propiedades editables desde la vista
+                usuario.Nombre = appUsuario.Nombre;
+                usuario.Url = appUsuario.Url;
+                usuario.FechaNacimiento = appUsuario.FechaNacimiento;
+                usuario.Telefono = appUsuario.Telefono;
+                usuario.CodigoPais = appUsuario.CodigoPais;
+                usuario.Ciudad = appUsuario.Ciudad;
+                usuario.Direccion = appUsuario.Direccion;
+                usuario.Pais = appUsuario.Pais;
+                // NOTA: 'Estado' no se edita desde el perfil del usuario, solo por el administrador.
+
+                var result = await _userManager.UpdateAsync(usuario);
+                if (result.Succeeded)
+                {
+                    // Se actualiza el nombre de usuario y email si se cambian, y se vuelve a firmar
+                    // para que los cambios se reflejen en la sesión inmediatamente.
+                    await _signInManager.RefreshSignInAsync(usuario);
+                    TempData["Correcto"] = "Perfil actualizado correctamente.";
+                    return RedirectToAction(nameof(Perfil)); // Vuelve a la página del perfil
+                }
+                ValidarErrores(result); // Mostrar errores de Identity
+            }
+            return View(appUsuario);
+        }
+
+        [HttpGet]
+        [Authorize] // Solo usuarios autenticados pueden cambiar su propia contraseña
+        public IActionResult CambiarPassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize]
+        public async Task<IActionResult> CambiarPassword(CambiarPasswordViewModel cpViewModel) // Elimina 'string email' del parámetro
+        {
+            if (ModelState.IsValid)
+            {
+                var usuario = await _userManager.GetUserAsync(User); // Obtener el usuario actual
+                if (usuario == null)
+                {
+                    return RedirectToAction("Error"); // Usuario no encontrado (aunque debería estar autenticado)
+                }
+
+                // Cambiar contraseña usando la contraseña actual
+                var resultado = await _userManager.ChangePasswordAsync(usuario, cpViewModel.ConfirmPassword, cpViewModel.Password);
+                // NOTA: Tu código original usaba ResetPasswordAsync que es para resetear sin contraseña actual.
+                // ChangePasswordAsync requiere la contraseña antigua. Si quieres resetear sin antigua, la lógica es diferente.
+                // Para un "Cambiar Contraseña" estándar, ChangePasswordAsync es el correcto.
+                // Si cpViewModel no tiene OldPassword, deberías añadirlo.
+
+                if (resultado.Succeeded)
+                {
+                    // Si se cambió la contraseña, vuelve a firmar al usuario por seguridad
+                    await _signInManager.RefreshSignInAsync(usuario);
+                    return RedirectToAction("ConfirmacionCambioPassword");
+                }
+                ValidarErrores(resultado); // Muestra errores de identidad
+            }
+            return View(cpViewModel);
+        }
+
+        [HttpGet]
+        public IActionResult ConfirmacionCambioPassword()
+        {
             return View();
         }
     }

@@ -1,0 +1,81 @@
+﻿@model ProyectoIdentity.Models.ViewModels.AudienciaCreateEditViewModel
+
+@{
+    ViewData["Title"] = "Crear Audiencia";
+}
+
+<h1>Crear Audiencia</h1>
+
+<h4>Nueva Audiencia</h4>
+<hr />
+<div class="row">
+    <div class="col-md-8">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group mb-3">
+                <label asp-for="CasoId" class="control-label"></label>
+                <select asp-for="CasoId" asp-items="@Model.CasosList" class="form-control">
+                    <option value="">-- Seleccione un Caso --</option>
+                </select>
+                <span asp-validation-for="CasoId" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="Fecha" class="control-label"></label>
+                <input asp-for="Fecha" class="form-control" type="datetime-local" /> 
+                <span asp-validation-for="Fecha" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="TipoAudiencia" class="control-label"></label>
+                <select asp-for="TipoAudiencia" asp-items="Html.GetEnumSelectList<ProyectoIdentity.Models.Domain.Enums.TipoAudiencia>()" class="form-control"></select>
+                <span asp-validation-for="TipoAudiencia" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="Lugar" class="control-label"></label>
+                <input asp-for="Lugar" class="form-control" />
+                <span asp-validation-for="Lugar" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="Juez" class="control-label"></label>
+                <input asp-for="Juez" class="form-control" />
+                <span asp-validation-for="Juez" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="Tribunal" class="control-label"></label>
+                <input asp-for="Tribunal" class="form-control" />
+                <span asp-validation-for="Tribunal" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="Notas" class="control-label"></label>
+                <textarea asp-for="Notas" class="form-control" rows="3"></textarea>
+                <span asp-validation-for="Notas" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check mb-3">
+                <input class="form-check-input" asp-for="EsRecordatorioEnviado" />
+                <label class="form-check-label" asp-for="EsRecordatorioEnviado"></label>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Crear" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            flatpickr("#Fecha", {
+                enableTime: true,
+                dateFormat: "Y-m-d H:i",
+                altInput: true,
+                altFormat: "F j, Y h:i K", // Formato amigable para mostrar
+                time_24hr: true // Puedes cambiar a false si prefieres AM/PM
+            });
+        });
+    </script>
+}

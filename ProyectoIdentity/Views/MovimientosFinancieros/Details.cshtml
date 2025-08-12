@@ -1,0 +1,60 @@
+﻿@model ProyectoIdentity.Models.Domain.MovimientoFinanciero
+
+@{
+    ViewData["Title"] = "Detalles del Movimiento Financiero";
+}
+
+<h1>Detalles del Movimiento Financiero</h1>
+
+<div>
+    <h4>Movimiento</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.TipoMovimiento)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.TipoMovimiento)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Concepto)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Concepto)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Monto)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Monto)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.FechaMovimiento)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.FechaMovimiento)
+        </dd>
+        <dt class="col-sm-3">
+            Caso Asociado
+        </dt>
+        <dd class="col-sm-9">
+            @(Model.Caso != null ? $"{Model.Caso.Titulo} ({Model.Caso.Cliente.NombreCompleto})" : "N/A")
+        </dd>
+        <dt class="col-sm-3">
+            Abogado que Registra
+        </dt>
+        <dd class="col-sm-9">
+            @(Model.Abogado != null ? Model.Abogado.NombreCompleto : "N/A")
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.IsDeleted)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.IsDeleted)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.MovimientoId" class="btn btn-warning">Editar</a> |
+    <a asp-action="Index" class="btn btn-secondary">Volver al Listado</a>
+</div>

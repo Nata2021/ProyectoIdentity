@@ -17,6 +17,8 @@ namespace ProyectoIdentity.Hubs
             // Aquí podrías loguear el usuario conectado
             var userId = Context.UserIdentifier; // El mismo que se usa en Clients.User(...)
             await base.OnConnectedAsync();
+           
+
         }
     }
 }

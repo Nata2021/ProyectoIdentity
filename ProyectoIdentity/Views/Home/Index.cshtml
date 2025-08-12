@@ -3,7 +3,7 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
+    <h1 class="display-4">Bienvenido</h1>
     @if (User.Identity.IsAuthenticated)
     {
         var autentica2Factores = ViewData["Autenticacion2FactoresActiva"];
@@ -22,5 +22,62 @@
     }
 
 
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    @{
+    ViewData["Title"] = "Bienvenido a Estudio Jurídico Cavalli & Asoc.";
+}
+
+<div class="text-center my-5">
+        <h1 class="display-4 fw-bold text-primary animate__animated animate__fadeInDown">Estudio Jurídico Cavalli & Asoc.</h1>
+    <p class="lead mt-3 animate__animated animate__fadeInUp">
+        Su socio confiable en asesoramiento y representación legal.
+    </p>
+</div>
+
+<div class="row featurette d-flex justify-content-center align-items-center mb-5">
+    <div class="col-md-7 order-md-2 animate__animated animate__fadeInRight">
+        <h2 class="featurette-heading fw-bold">Compromiso y <span class="text-muted">Excelencia Legal.</span></h2>
+        <p class="lead">
+            En EJ Diaz, nos dedicamos a ofrecer soluciones jurídicas integrales y personalizadas, adaptándonos a las necesidades específicas de cada cliente. Nuestra trayectoria se basa en la honestidad, la transparencia y la búsqueda incansable de la justicia.
+        </p>
+        <p class="lead">
+            Contamos con un equipo de abogados especializados en diversas ramas del derecho, listos para brindarle el mejor asesoramiento.
+        </p>
+    </div>
+    <div class="col-md-5 order-md-1 animate__animated animate__fadeInLeft">
+        <img class="img-fluid rounded shadow-lg" src="https://via.placeholder.com/500x500?text=Estudio+Juridico" alt="Imagen del estudio jurídico">
+        @* Puedes reemplazar con una imagen real tuya *@
+    </div>
+</div>
+
+<hr class="featurette-divider">
+
+<div class="row text-center my-5">
+    <div class="col-lg-4 animate__animated animate__zoomIn">
+        <img class="img-fluid rounded-circle mb-3" src="https://via.placeholder.com/140x140?text=Asesoramiento" alt="Asesoramiento">
+        <h3 class="fw-bold text-primary">Asesoramiento Personalizado</h3>
+        <p>Análisis detallado de su situación legal para ofrecerle las mejores estrategias.</p>
+        <p><a class="btn btn-outline-primary" asp-controller="Home" asp-action="Privacy">Más detalles &raquo;</a></p>
+    </div>
+    <div class="col-lg-4 animate__animated animate__zoomIn animate__delay-1s">
+        <img class="img-fluid rounded-circle mb-3" src="https://via.placeholder.com/140x140?text=Representacion" alt="Representación">
+        <h3 class="fw-bold text-primary">Representación en Juicios</h3>
+        <p>Defensa firme y eficaz de sus intereses en todas las instancias judiciales.</p>
+        <p><a class="btn btn-outline-primary" asp-controller="Home" asp-action="Privacy">Más detalles &raquo;</a></p>
+    </div>
+    <div class="col-lg-4 animate__animated animate__zoomIn animate__delay-2s">
+        <img class="img-fluid rounded-circle mb-3" src="https://via.placeholder.com/140x140?text=Documentos" alt="Documentos">
+        <h3 class="fw-bold text-primary">Gestión de Documentos</h3>
+        <p>Asistencia en la redacción y revisión de contratos, testamentos y otros documentos.</p>
+        <p><a class="btn btn-outline-primary" asp-controller="Home" asp-action="Privacy">Más detalles &raquo;</a></p>
+    </div>
+</div>
+
+<hr class="featurette-divider">
+
+<div class="text-center my-5 animate__animated animate__fadeInUp">
+    <h2 class="fw-bold">¿Listo para comenzar?</h2>
+    <p class="lead">Inicie sesión para acceder a su portal de cliente o contáctenos para más información.</p>
+    <a asp-controller="Cuentas" asp-action="Acceso" class="btn btn-primary btn-lg me-2">Acceder al Portal</a>
+    <a asp-controller="Cuentas" asp-action="Registro" class="btn btn-outline-secondary btn-lg">Registrarse</a>
+</div>
 </div>

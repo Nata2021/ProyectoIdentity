@@ -1,0 +1,91 @@
+﻿@model ProyectoIdentity.Models.Domain.Documento
+
+@{
+    ViewData["Title"] = "Detalles del Documento";
+}
+
+<h1>Detalles del Documento</h1>
+
+<div>
+    <h4>Documento</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Caso)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Caso.Titulo) (@Html.DisplayFor(model => model.Caso.Cliente.NombreCompleto))
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Tipo)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Tipo)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Version)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Version)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.DocumentoOriginal)
+        </dt>
+        <dd class="col-sm-9">
+            @(Model.DocumentoOriginal != null ? Model.DocumentoOriginal.Nombre : "N/A")
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.SubidoPor)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.SubidoPor.Email)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.FechaSubida)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.FechaSubida)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Tags)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Tags)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.IsPublic)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.IsPublic)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.IsDeleted)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.IsDeleted)
+        </dd>
+        <dt class="col-sm-3">
+            Archivo
+        </dt>
+        <dd class="col-sm-9">
+            @if (!string.IsNullOrEmpty(Model.RutaArchivo))
+            {
+                <a asp-action="Download" asp-route-id="@Model.DocumentoId" class="btn btn-success btn-sm">Descargar Archivo</a>
+            }
+            else
+            {
+                <span>No hay archivo asociado.</span>
+            }
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.DocumentoId" class="btn btn-warning">Editar</a> |
+    <a asp-action="Index" class="btn btn-secondary">Volver al Listado</a>
+</div>

@@ -1,0 +1,86 @@
+﻿@model IEnumerable<ProyectoIdentity.Models.Domain.Tarea>
+
+@{
+    ViewData["Title"] = "Listado de Tareas";
+}
+
+<h1>Listado de Tareas</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Crear Nueva Tarea</a>
+</p>
+
+<table class="table table-striped table-bordered" id="tareasTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Caso)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AbogadoAsignado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaLimite)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Estado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Prioridad)
+            </th>
+            <th>
+                Progreso
+            </th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descripcion)
+                </td>
+                <td>                   
+                    @Html.DisplayFor(modelItem => item.Caso.Titulo)
+                </td>
+                <td>                    
+                    @Html.DisplayFor(modelItem => item.AbogadoAsignado.NombreCompleto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaLimite)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Estado)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Prioridad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PorcentajeProgreso)%
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.TareaId" class="btn btn-warning btn-sm">Editar</a> |
+                    <a asp-action="Details" asp-route-id="@item.TareaId" class="btn btn-info btn-sm">Detalles</a> |
+                    <a asp-action="Delete" asp-route-id="@item.TareaId" class="btn btn-danger btn-sm">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#tareasTable').DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json"
+                }
+            });
+        });
+    </script>
+}

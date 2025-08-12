@@ -1,4 +1,4 @@
-﻿@model List<ProyectoIdentity.Models.Notificacion>
+﻿@model List<ProyectoIdentity.Models.Domain.Notificacion>
 
 <li class="nav-item dropdown">
     <a class="nav-link dropdown-item" href="#" id="notificacionesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -17,7 +17,7 @@
             @foreach (var notificacion in Model)
             {
                 <li>
-                    <a class="dropdown-item notificacion-item" href="#" data-id="@notificacion.Id">
+                    <a class="dropdown-item notificacion-item" href="#" data-id="@notificacion.NotificacionId">
                         @notificacion.Mensaje
                     </a>
                 </li>
@@ -29,51 +29,13 @@
         }
     </ul>
 </li>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
-<script>
-    const connection = new signalR.HubConnectionBuilder()
-        .withUrl("/NotificacionesHub")
-        .build();
 
-    connection.start().then(() => {
-        console.log("Conectado a SignalR");
-    }).catch(err => console.error(err.toString()));
+@section Scripts {
 
-    connection.on("RecibirNotificacion", function (mensaje) {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
 
-        const contenedor = document.getElementById("contenedorNotificaciones");
-        const cantidadSpan = document.getElementById("cantidadNotificaciones");
-
-        contenedor.insertAdjacentHTML("afterbegin", `
-            <li><a class="dropdown-item notificacion-item" href="#" data-id="0">${mensaje}</a></li>
-        `);
-
-        let cantidad = parseInt(cantidadSpan?.textContent || "0");
-        if (cantidadSpan) {
-            cantidadSpan.textContent = cantidad + 1;
-            cantidadSpan.style.display = "inline-block";
-        }
-    });
-
-    document.addEventListener("click", function (e) {
-        if (e.target.classList.contains("notificacion-item")) {
-            const id = e.target.getAttribute("data-id");
-            if (id != "0") {
-                fetch(`/Notificaciones/MarcarComoLeida?id=${id}`, {
-                    method: "POST"
-                }).then(() => {
-                    e.target.classList.add("text-muted");
-                    const cantidadSpan = document.getElementById("cantidadNotificaciones");
-                    let cantidad = parseInt(cantidadSpan?.textContent || "0");
-                    if (cantidad > 1) {
-                        cantidadSpan.textContent = cantidad - 1;
-                    } else {
-                        cantidadSpan.style.display = "none";
-                    }
-                });
-            }
-        }
-    });
-</script>
 
 

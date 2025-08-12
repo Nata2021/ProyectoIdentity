@@ -1,0 +1,38 @@
+﻿@model Microsoft.AspNetCore.Identity.IdentityRole
+
+@{
+    ViewData["Title"] = "Eliminar Rol";
+}
+
+<h1>Eliminar Rol</h1>
+
+<h3>¿Está seguro de que desea eliminar el rol "@Model.Name"?</h3>
+<div class="alert alert-warning" role="alert">
+    <strong>¡Advertencia!</strong> Eliminar un rol puede afectar a los usuarios que lo tienen asignado.
+    Asegúrese de que ningún usuario importante dependa exclusivamente de este rol.
+</div>
+
+<div>
+    <h4>Rol</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-3">
+            ID del Rol
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt class="col-sm-3">
+            Nombre del Rol
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+    </dl>
+
+    <form asp-action="EliminarRolConfirmado" asp-route-id="@Model.Id" method="post">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Confirmar Eliminación" class="btn btn-danger" /> |
+        <a asp-action="ListarRoles" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>

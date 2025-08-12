@@ -1,6 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Identity
-@inject SignInManager<IdentityUser> SignInManager
-@inject UserManager<IdentityUser> UserManager
+@using ProyectoIdentity.Models.Domain
+@inject SignInManager<AppUsuario> SignInManager
+@inject UserManager<AppUsuario> UserManager
 @using ProyectoIdentity.Models
 
 <ul class="navbar-nav ms-auto align-items-center">
@@ -29,13 +30,13 @@
                 <li><hr class="dropdown-divider" /></li>
 
                 <li>
-                    <a class="dropdown-item" asp-controller="Usuarios" asp-action="EditarPerfil" asp-route-id="@userId">
+                    <a class="dropdown-item" asp-controller="Cuentas" asp-action="Perfil" asp-route-id="@userId">
                         <i class="bi bi-pencil-square me-2"></i> Editar perfil
                     </a>
                 </li>
 
                 <li>
-                    <a class="dropdown-item" asp-controller="Usuarios" asp-action="CambiarPassword">
+                    <a class="dropdown-item" asp-controller="Cuentas" asp-action="CambiarPassword">
                         <i class="bi bi-shield-lock-fill me-2"></i> Cambiar contraseña
                     </a>
                 </li>
@@ -44,17 +45,17 @@
                 {
                     <li><hr class="dropdown-divider" /></li>
                     <li>
-                        <a class="dropdown-item text-success fw-semibold" asp-controller="Cuentas" asp-action="RegistroAdministrador">
+                        <a class="dropdown-item text-success fw-semibold" asp-controller="Administracion" asp-action="RegistroAdministrador">
                             <i class="bi bi-person-plus-fill me-2"></i> Registrar nuevo usuario
                         </a>
                     </li>
                     <li>
-                        <a class="dropdown-item text-primary fw-semibold" asp-controller="Usuarios" asp-action="Index">
+                        <a class="dropdown-item text-primary fw-semibold" asp-controller="Administracion" asp-action="ListarUsuarios">
                             <i class="bi bi-shield-lock me-2"></i> Administrar Usuarios
                         </a>
                     </li>
                     <li>
-                        <a class="dropdown-item text-primary fw-semibold" asp-controller="Roles" asp-action="Index">
+                        <a class="dropdown-item text-primary fw-semibold" asp-controller="Administracion" asp-action="ListarRoles">
                             <i class="bi bi-shield-lock me-2"></i> Administrar roles
                         </a>
                     </li>

@@ -1,7 +1,56 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\Usuario\\Documents\\Visual Studio 2022\\Repository\\ProyectoIdentity\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{2617A4D5-6AC6-468C-888F-BC61D413F644}|ProyectoIdentity\\ProyectoIdentity.csproj|c:\\users\\usuario\\documents\\visual studio 2022\\repository\\proyectoidentity\\proyectoidentity\\views\\abogados\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2617A4D5-6AC6-468C-888F-BC61D413F644}|ProyectoIdentity\\ProyectoIdentity.csproj|solutionrelative:proyectoidentity\\views\\abogados\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2617A4D5-6AC6-468C-888F-BC61D413F644}|ProyectoIdentity\\ProyectoIdentity.csproj|c:\\users\\usuario\\documents\\visual studio 2022\\repository\\proyectoidentity\\proyectoidentity\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2617A4D5-6AC6-468C-888F-BC61D413F644}|ProyectoIdentity\\ProyectoIdentity.csproj|solutionrelative:proyectoidentity\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2617A4D5-6AC6-468C-888F-BC61D413F644}|ProyectoIdentity\\ProyectoIdentity.csproj|c:\\users\\usuario\\documents\\visual studio 2022\\repository\\proyectoidentity\\proyectoidentity\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2617A4D5-6AC6-468C-888F-BC61D413F644}|ProyectoIdentity\\ProyectoIdentity.csproj|solutionrelative:proyectoidentity\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2617A4D5-6AC6-468C-888F-BC61D413F644}|ProyectoIdentity\\ProyectoIdentity.csproj|c:\\users\\usuario\\documents\\visual studio 2022\\repository\\proyectoidentity\\proyectoidentity\\views\\shared\\_loginregistrovistaparcial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2617A4D5-6AC6-468C-888F-BC61D413F644}|ProyectoIdentity\\ProyectoIdentity.csproj|solutionrelative:proyectoidentity\\views\\shared\\_loginregistrovistaparcial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2617A4D5-6AC6-468C-888F-BC61D413F644}|ProyectoIdentity\\ProyectoIdentity.csproj|c:\\users\\usuario\\documents\\visual studio 2022\\repository\\proyectoidentity\\proyectoidentity\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2617A4D5-6AC6-468C-888F-BC61D413F644}|ProyectoIdentity\\ProyectoIdentity.csproj|solutionrelative:proyectoidentity\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2617A4D5-6AC6-468C-888F-BC61D413F644}|ProyectoIdentity\\ProyectoIdentity.csproj|c:\\users\\usuario\\documents\\visual studio 2022\\repository\\proyectoidentity\\proyectoidentity\\wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{2617A4D5-6AC6-468C-888F-BC61D413F644}|ProyectoIdentity\\ProyectoIdentity.csproj|solutionrelative:proyectoidentity\\wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2617A4D5-6AC6-468C-888F-BC61D413F644}|ProyectoIdentity\\ProyectoIdentity.csproj|c:\\users\\usuario\\documents\\visual studio 2022\\repository\\proyectoidentity\\proyectoidentity\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{2617A4D5-6AC6-468C-888F-BC61D413F644}|ProyectoIdentity\\ProyectoIdentity.csproj|solutionrelative:proyectoidentity\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2617A4D5-6AC6-468C-888F-BC61D413F644}|ProyectoIdentity\\ProyectoIdentity.csproj|c:\\users\\usuario\\documents\\visual studio 2022\\repository\\proyectoidentity\\proyectoidentity\\views\\abogados\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2617A4D5-6AC6-468C-888F-BC61D413F644}|ProyectoIdentity\\ProyectoIdentity.csproj|solutionrelative:proyectoidentity\\views\\abogados\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2617A4D5-6AC6-468C-888F-BC61D413F644}|ProyectoIdentity\\ProyectoIdentity.csproj|c:\\users\\usuario\\documents\\visual studio 2022\\repository\\proyectoidentity\\proyectoidentity\\controllers\\abogadoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2617A4D5-6AC6-468C-888F-BC61D413F644}|ProyectoIdentity\\ProyectoIdentity.csproj|solutionrelative:proyectoidentity\\controllers\\abogadoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2617A4D5-6AC6-468C-888F-BC61D413F644}|ProyectoIdentity\\ProyectoIdentity.csproj|c:\\users\\usuario\\documents\\visual studio 2022\\repository\\proyectoidentity\\proyectoidentity\\views\\abogados\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2617A4D5-6AC6-468C-888F-BC61D413F644}|ProyectoIdentity\\ProyectoIdentity.csproj|solutionrelative:proyectoidentity\\views\\abogados\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2617A4D5-6AC6-468C-888F-BC61D413F644}|ProyectoIdentity\\ProyectoIdentity.csproj|c:\\users\\usuario\\documents\\visual studio 2022\\repository\\proyectoidentity\\proyectoidentity\\views\\abogados\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2617A4D5-6AC6-468C-888F-BC61D413F644}|ProyectoIdentity\\ProyectoIdentity.csproj|solutionrelative:proyectoidentity\\views\\abogados\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2617A4D5-6AC6-468C-888F-BC61D413F644}|ProyectoIdentity\\ProyectoIdentity.csproj|c:\\users\\usuario\\documents\\visual studio 2022\\repository\\proyectoidentity\\proyectoidentity\\views\\abogados\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2617A4D5-6AC6-468C-888F-BC61D413F644}|ProyectoIdentity\\ProyectoIdentity.csproj|solutionrelative:proyectoidentity\\views\\abogados\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,7 +58,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Bookmark",
@@ -30,6 +79,151 @@
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Documents\\Visual Studio 2022\\Repository\\ProyectoIdentity\\ProyectoIdentity\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "ProyectoIdentity\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\Usuario\\Documents\\Visual Studio 2022\\Repository\\ProyectoIdentity\\ProyectoIdentity\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "ProyectoIdentity\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAABgAAAAAAAAAAAAAABgAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-30T22:50:59.441Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Documents\\Visual Studio 2022\\Repository\\ProyectoIdentity\\ProyectoIdentity\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "ProyectoIdentity\\Views\\Home\\Index.cshtml",
+              "ToolTip": "C:\\Users\\Usuario\\Documents\\Visual Studio 2022\\Repository\\ProyectoIdentity\\ProyectoIdentity\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "ProyectoIdentity\\Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAACMAAABSAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-30T22:48:27.73Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Delete.cshtml",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Documents\\Visual Studio 2022\\Repository\\ProyectoIdentity\\ProyectoIdentity\\Views\\Abogados\\Delete.cshtml",
+              "RelativeDocumentMoniker": "ProyectoIdentity\\Views\\Abogados\\Delete.cshtml",
+              "ToolTip": "C:\\Users\\Usuario\\Documents\\Visual Studio 2022\\Repository\\ProyectoIdentity\\ProyectoIdentity\\Views\\Abogados\\Delete.cshtml",
+              "RelativeToolTip": "ProyectoIdentity\\Views\\Abogados\\Delete.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-27T04:07:39.815Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Documents\\Visual Studio 2022\\Repository\\ProyectoIdentity\\ProyectoIdentity\\Views\\Abogados\\Details.cshtml",
+              "RelativeDocumentMoniker": "ProyectoIdentity\\Views\\Abogados\\Details.cshtml",
+              "ToolTip": "C:\\Users\\Usuario\\Documents\\Visual Studio 2022\\Repository\\ProyectoIdentity\\ProyectoIdentity\\Views\\Abogados\\Details.cshtml",
+              "RelativeToolTip": "ProyectoIdentity\\Views\\Abogados\\Details.cshtml",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAAAEoAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-27T04:04:21.466Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Documents\\Visual Studio 2022\\Repository\\ProyectoIdentity\\ProyectoIdentity\\Views\\Abogados\\Edit.cshtml",
+              "RelativeDocumentMoniker": "ProyectoIdentity\\Views\\Abogados\\Edit.cshtml",
+              "ToolTip": "C:\\Users\\Usuario\\Documents\\Visual Studio 2022\\Repository\\ProyectoIdentity\\ProyectoIdentity\\Views\\Abogados\\Edit.cshtml",
+              "RelativeToolTip": "ProyectoIdentity\\Views\\Abogados\\Edit.cshtml",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAQwEgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-27T04:03:33.418Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Documents\\Visual Studio 2022\\Repository\\ProyectoIdentity\\ProyectoIdentity\\Views\\Abogados\\Create.cshtml",
+              "RelativeDocumentMoniker": "ProyectoIdentity\\Views\\Abogados\\Create.cshtml",
+              "ToolTip": "C:\\Users\\Usuario\\Documents\\Visual Studio 2022\\Repository\\ProyectoIdentity\\ProyectoIdentity\\Views\\Abogados\\Create.cshtml",
+              "RelativeToolTip": "ProyectoIdentity\\Views\\Abogados\\Create.cshtml",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAAADkAAAA9AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-27T04:02:03.799Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Documents\\Visual Studio 2022\\Repository\\ProyectoIdentity\\ProyectoIdentity\\Views\\Abogados\\Index.cshtml",
+              "RelativeDocumentMoniker": "ProyectoIdentity\\Views\\Abogados\\Index.cshtml",
+              "ToolTip": "C:\\Users\\Usuario\\Documents\\Visual Studio 2022\\Repository\\ProyectoIdentity\\ProyectoIdentity\\Views\\Abogados\\Index.cshtml",
+              "RelativeToolTip": "ProyectoIdentity\\Views\\Abogados\\Index.cshtml",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAAAkAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-27T04:00:27.114Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "AbogadosController.cs",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Documents\\Visual Studio 2022\\Repository\\ProyectoIdentity\\ProyectoIdentity\\Controllers\\AbogadosController.cs",
+              "RelativeDocumentMoniker": "ProyectoIdentity\\Controllers\\AbogadosController.cs",
+              "ToolTip": "C:\\Users\\Usuario\\Documents\\Visual Studio 2022\\Repository\\ProyectoIdentity\\ProyectoIdentity\\Controllers\\AbogadosController.cs",
+              "RelativeToolTip": "ProyectoIdentity\\Controllers\\AbogadosController.cs",
+              "ViewState": "AgIAAG8AAAAAAAAAAAAwwIgAAABQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-27T03:50:28.689Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "site.css",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Documents\\Visual Studio 2022\\Repository\\ProyectoIdentity\\ProyectoIdentity\\wwwroot\\css\\site.css",
+              "RelativeDocumentMoniker": "ProyectoIdentity\\wwwroot\\css\\site.css",
+              "ToolTip": "C:\\Users\\Usuario\\Documents\\Visual Studio 2022\\Repository\\ProyectoIdentity\\ProyectoIdentity\\wwwroot\\css\\site.css",
+              "RelativeToolTip": "ProyectoIdentity\\wwwroot\\css\\site.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAJ0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-07-27T02:44:21.91Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "site.js",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Documents\\Visual Studio 2022\\Repository\\ProyectoIdentity\\ProyectoIdentity\\wwwroot\\js\\site.js",
+              "RelativeDocumentMoniker": "ProyectoIdentity\\wwwroot\\js\\site.js",
+              "ToolTip": "C:\\Users\\Usuario\\Documents\\Visual Studio 2022\\Repository\\ProyectoIdentity\\ProyectoIdentity\\wwwroot\\js\\site.js",
+              "RelativeToolTip": "ProyectoIdentity\\wwwroot\\js\\site.js",
+              "ViewState": "AgIAAF4AAAAAAAAAAAAgwMMAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-07-27T02:24:19.225Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "_LoginRegistroVistaParcial.cshtml",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Documents\\Visual Studio 2022\\Repository\\ProyectoIdentity\\ProyectoIdentity\\Views\\Shared\\_LoginRegistroVistaParcial.cshtml",
+              "RelativeDocumentMoniker": "ProyectoIdentity\\Views\\Shared\\_LoginRegistroVistaParcial.cshtml",
+              "ToolTip": "C:\\Users\\Usuario\\Documents\\Visual Studio 2022\\Repository\\ProyectoIdentity\\ProyectoIdentity\\Views\\Shared\\_LoginRegistroVistaParcial.cshtml",
+              "RelativeToolTip": "ProyectoIdentity\\Views\\Shared\\_LoginRegistroVistaParcial.cshtml",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAACIAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-26T19:54:23.369Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Documents\\Visual Studio 2022\\Repository\\ProyectoIdentity\\ProyectoIdentity\\Program.cs",
+              "RelativeDocumentMoniker": "ProyectoIdentity\\Program.cs",
+              "ToolTip": "C:\\Users\\Usuario\\Documents\\Visual Studio 2022\\Repository\\ProyectoIdentity\\ProyectoIdentity\\Program.cs",
+              "RelativeToolTip": "ProyectoIdentity\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-26T19:44:52.161Z"
             }
           ]
         }

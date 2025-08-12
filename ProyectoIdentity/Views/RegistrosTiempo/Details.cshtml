@@ -1,0 +1,60 @@
+﻿@model ProyectoIdentity.Models.Domain.RegistroTiempo
+
+@{
+    ViewData["Title"] = "Detalles del Registro de Tiempo";
+}
+
+<h1>Detalles del Registro de Tiempo</h1>
+
+<div>
+    <h4>Registro de Tiempo</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Fecha)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Fecha)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Abogado)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Abogado.NombreCompleto)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Caso)
+        </dt>
+        <dd class="col-sm-9">
+            @(Model.Caso != null ? $"{Model.Caso.Titulo} ({Model.Caso.Cliente.NombreCompleto})" : "N/A")
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Horas)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Horas)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.DescripcionActividad)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.DescripcionActividad)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Facturable)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Facturable)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.IsDeleted)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.IsDeleted)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.RegistroTiempoId" class="btn btn-warning">Editar</a> |
+    <a asp-action="Index" class="btn btn-secondary">Volver al Listado</a>
+</div>

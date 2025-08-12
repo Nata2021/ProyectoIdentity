@@ -1,0 +1,66 @@
+﻿@model ProyectoIdentity.Models.Domain.Comunicacion
+
+@{
+    ViewData["Title"] = "Detalles de la Comunicación";
+}
+
+<h1>Detalles de la Comunicación</h1>
+
+<div>
+    <h4>Comunicación</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.TipoComunicacion)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.TipoComunicacion)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Asunto)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Asunto)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Detalle)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Detalle)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.FechaComunicacion)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.FechaComunicacion)
+        </dd>
+        <dt class="col-sm-3">
+            Caso Asociado
+        </dt>
+        <dd class="col-sm-9">
+            @(Model.Caso != null ? $"{Model.Caso.Titulo} ({Model.Caso.Cliente.NombreCompleto})" : "N/A")
+        </dd>
+        <dt class="col-sm-3">
+            Cliente Asociado
+        </dt>
+        <dd class="col-sm-9">
+            @(Model.Cliente != null ? Model.Cliente.NombreCompleto : "N/A")
+        </dd>
+        <dt class="col-sm-3">
+            Abogado que Registra
+        </dt>
+        <dd class="col-sm-9">
+            @(Model.Abogado != null ? Model.Abogado.NombreCompleto : "N/A")
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.IsDeleted)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.IsDeleted)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.ComunicacionId" class="btn btn-warning">Editar</a> |
+    <a asp-action="Index" class="btn btn-secondary">Volver al Listado</a>
+</div>

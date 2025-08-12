@@ -1,6 +1,7 @@
 ﻿@model AccesoViewModel
 @using Microsoft.AspNetCore.Identity
-@inject SignInManager<IdentityUser> SignInManager
+@using ProyectoIdentity.Models.ViewModels
+@inject SignInManager<AppUsuario> SignInManager
 
 @{
     ViewData["Title"] = "Acceso de usuario";
@@ -90,20 +91,4 @@
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
-}
-<script>
-    function togglePasswordVisibility() {
-        const pwd = document.getElementById("passwordInput");
-        const icon = document.getElementById("eyeIcon");
-        if (pwd.type === "password") {
-            pwd.type = "text";
-            icon.classList.remove("bi-eye");
-            icon.classList.add("bi-eye-slash");
-        } else {
-            pwd.type = "password";
-            icon.classList.remove("bi-eye-slash");
-            icon.classList.add("bi-eye");
-        }
-    }
-</script>
 }

@@ -1,0 +1,90 @@
+﻿@model ProyectoIdentity.Models.Domain.Tarea
+
+@{
+    ViewData["Title"] = "Detalles de la Tarea";
+}
+
+<h1>Detalles de la Tarea</h1>
+
+<div>
+    <h4>Tarea</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-3">
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+        <dd class = "col-sm-9">
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+        <dt class = "col-sm-3">
+            @Html.DisplayNameFor(model => model.Caso)
+        </dt>
+        <dd class = "col-sm-9">
+            @Html.DisplayFor(model => model.Caso.Titulo) (@Html.DisplayFor(model => model.Caso.Cliente.NombreCompleto))
+        </dd>
+        <dt class = "col-sm-3">
+            @Html.DisplayNameFor(model => model.AbogadoAsignado)
+        </dt>
+        <dd class = "col-sm-9">
+            @Html.DisplayFor(model => model.AbogadoAsignado.NombreCompleto)
+        </dd>
+        <dt class = "col-sm-3">
+            @Html.DisplayNameFor(model => model.FechaLimite)
+        </dt>
+        <dd class = "col-sm-9">
+            @Html.DisplayFor(model => model.FechaLimite)
+        </dd>
+        <dt class = "col-sm-3">
+            @Html.DisplayNameFor(model => model.Estado)
+        </dt>
+        <dd class = "col-sm-9">
+            @Html.DisplayFor(model => model.Estado)
+        </dd>
+        <dt class = "col-sm-3">
+            @Html.DisplayNameFor(model => model.TipoTarea)
+        </dt>
+        <dd class = "col-sm-9">
+            @Html.DisplayFor(model => model.TipoTarea)
+        </dd>
+        <dt class = "col-sm-3">
+            @Html.DisplayNameFor(model => model.Prioridad)
+        </dt>
+        <dd class = "col-sm-9">
+            @Html.DisplayFor(model => model.Prioridad)
+        </dd>
+        <dt class = "col-sm-3">
+            @Html.DisplayNameFor(model => model.PorcentajeProgreso)
+        </dt>
+        <dd class = "col-sm-9">
+            @Html.DisplayFor(model => model.PorcentajeProgreso)%
+        </dd>
+        <dt class = "col-sm-3">
+            @Html.DisplayNameFor(model => model.CreadaPor)
+        </dt>
+        <dd class = "col-sm-9">
+            @Html.DisplayFor(model => model.CreadaPor.Email) @* Mostrar el email del usuario que la creó *@
+        </dd>
+        <dt class = "col-sm-3">
+            @Html.DisplayNameFor(model => model.FechaCreacion)
+        </dt>
+        <dd class = "col-sm-9">
+            @Html.DisplayFor(model => model.FechaCreacion)
+        </dd>
+        <dt class = "col-sm-3">
+            @Html.DisplayNameFor(model => model.FechaCompletado)
+        </dt>
+        <dd class = "col-sm-9">
+            @Html.DisplayFor(model => model.FechaCompletado)
+        </dd>
+        <dt class = "col-sm-3">
+            @Html.DisplayNameFor(model => model.IsDeleted)
+        </dt>
+        <dd class = "col-sm-9">
+            @Html.DisplayFor(model => model.IsDeleted)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.TareaId" class="btn btn-warning">Editar</a> |
+    <a asp-action="Index" class="btn btn-secondary">Volver al Listado</a>
+</div>

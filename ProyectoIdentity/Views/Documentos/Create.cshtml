@@ -1,0 +1,53 @@
+﻿@model ProyectoIdentity.Models.ViewModels.DocumentoCreateEditViewModel
+
+@{
+    ViewData["Title"] = "Subir Nuevo Documento";
+}
+
+<h1>Subir Nuevo Documento</h1>
+
+<h4>Documento</h4>
+<hr />
+<div class="row">
+    <div class="col-md-8">
+        <form asp-action="Create" enctype="multipart/form-data"> 
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
+            <div class="form-group mb-3">
+                <label asp-for="CasoId" class="control-label"></label>
+                <select asp-for="CasoId" asp-items="@Model.CasosList" class="form-control">
+                    <option value="">-- Seleccione un Caso --</option>
+                </select>
+                <span asp-validation-for="CasoId" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="Nombre" class="control-label"></label>
+                <input asp-for="Nombre" class="form-control" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="Archivo" class="control-label"></label>
+                <input asp-for="Archivo" type="file" class="form-control" /> 
+                <span asp-validation-for="Archivo" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="Tags" class="control-label"></label>
+                <input asp-for="Tags" class="form-control" placeholder="Ej. contrato, sentencia, prueba" />
+                <span asp-validation-for="Tags" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check mb-3">
+                <input class="form-check-input" asp-for="IsPublic" />
+                <label class="form-check-label" asp-for="IsPublic"></label>
+            </div>
+            
+            <div class="form-group">
+                <input type="submit" value="Subir" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,75 @@
+﻿@model IEnumerable<ProyectoIdentity.Models.Domain.Audiencia>
+
+@{
+    ViewData["Title"] = "Listado de Audiencias";
+}
+
+<h1>Listado de Audiencias</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Crear Nueva Audiencia</a>
+</p>
+
+<table class="table table-striped table-bordered" id="audienciasTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Caso)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fecha)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TipoAudiencia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Lugar)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Juez)
+            </th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                   
+                    @Html.DisplayFor(modelItem => item.Caso.Titulo) (@Html.DisplayFor(modelItem => item.Caso.Cliente.NombreCompleto))
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fecha)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TipoAudiencia)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Lugar)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Juez)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.AudienciaId" class="btn btn-warning btn-sm">Editar</a> |
+                    <a asp-action="Details" asp-route-id="@item.AudienciaId" class="btn btn-info btn-sm">Detalles</a> |
+                    <a asp-action="Delete" asp-route-id="@item.AudienciaId" class="btn btn-danger btn-sm">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#audienciasTable').DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json"
+                }
+            });
+        });
+    </script>
+}

@@ -1,0 +1,84 @@
+﻿@model ProyectoIdentity.Models.ViewModels.TareaCreateEditViewModel
+
+@{
+    ViewData["Title"] = "Crear Tarea";
+}
+
+<h1>Crear Tarea</h1>
+
+<h4>Nueva Tarea</h4>
+<hr />
+<div class="row">
+    <div class="col-md-8">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group mb-3">
+                <label asp-for="CasoId" class="control-label"></label>
+                <select asp-for="CasoId" asp-items="@Model.CasosList" class="form-control">
+                    <option value="">-- Seleccione un Caso --</option>
+                </select>
+                <span asp-validation-for="CasoId" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="Descripcion" class="control-label"></label>
+                <textarea asp-for="Descripcion" class="form-control" rows="3"></textarea>
+                <span asp-validation-for="Descripcion" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="FechaLimite" class="control-label"></label>
+                <input asp-for="FechaLimite" class="form-control" type="date" />
+                <span asp-validation-for="FechaLimite" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="Estado" class="control-label"></label>
+                <select asp-for="Estado" asp-items="Html.GetEnumSelectList<ProyectoIdentity.Models.Domain.Enums.EstadoTarea>()" class="form-control"></select>
+                <span asp-validation-for="Estado" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="AsignadoA" class="control-label"></label>
+                <select asp-for="AsignadoA" asp-items="@Model.AbogadosList" class="form-control">
+                    <option value="">-- Asignar a Abogado --</option>
+                </select>
+                <span asp-validation-for="AsignadoA" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="TipoTarea" class="control-label"></label>
+                <select asp-for="TipoTarea" asp-items="Html.GetEnumSelectList<ProyectoIdentity.Models.Domain.Enums.TipoTarea>()" class="form-control"></select>
+                <span asp-validation-for="TipoTarea" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="Prioridad" class="control-label"></label>
+                <select asp-for="Prioridad" asp-items="Html.GetEnumSelectList<ProyectoIdentity.Models.Domain.Enums.Prioridad>()" class="form-control"></select>
+                <span asp-validation-for="Prioridad" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="PorcentajeProgreso" class="control-label"></label>
+                <input asp-for="PorcentajeProgreso" class="form-control" type="number" min="0" max="100" />
+                <span asp-validation-for="PorcentajeProgreso" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Crear" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            flatpickr("#FechaLimite", {
+                dateFormat: "Y-m-d",
+                allowInput: true,
+                altInput: true,
+                altFormat: "F j, Y",
+                minDate: "today" // La fecha límite no puede ser antes de hoy
+            });
+        });
+    </script>
+}

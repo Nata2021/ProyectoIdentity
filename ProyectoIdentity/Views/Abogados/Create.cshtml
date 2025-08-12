@@ -1,0 +1,76 @@
+﻿@model ProyectoIdentity.Models.ViewModels.AbogadoCreateViewModel
+
+@{
+    ViewData["Title"] = "Crear Abogado";
+}
+
+<h1 class="mb-4">Crear Abogado</h1>
+
+<h4>Nuevo Abogado</h4>
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <div class="card shadow-sm">
+            @* Encapsular el formulario en una tarjeta *@
+            <div class="card-body">
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                    <div class="form-group mb-3">
+                        <label asp-for="UserId" class="control-label"></label>
+                        <select asp-for="UserId" asp-items="@Model.UsuariosList" class="form-control">
+                            <option value="">-- Seleccione un Usuario --</option>
+                        </select>
+                        <span asp-validation-for="UserId" class="text-danger"></span>
+                        <small class="form-text text-muted">Asocie un usuario existente de la aplicación.</small>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="NombreCompleto" class="control-label"></label>
+                        <input asp-for="NombreCompleto" class="form-control" placeholder="Ej. Juan Pérez" />
+                        <span asp-validation-for="NombreCompleto" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="Matricula" class="control-label"></label>
+                        <input asp-for="Matricula" class="form-control" placeholder="Ej. ABC12345" />
+                        <span asp-validation-for="Matricula" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="AreaEspecializacion" class="control-label"></label>
+                        <select asp-for="AreaEspecializacion" asp-items="Html.GetEnumSelectList<ProyectoIdentity.Models.Enums.AreaEspecializacion>()" class="form-control">
+                            <option value="">-- Seleccione un Área --</option>
+                        </select>
+                        <span asp-validation-for="AreaEspecializacion" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="Email" class="control-label"></label>
+                        <input asp-for="Email" class="form-control" placeholder="ejemplo@estudio.com" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="Telefono" class="control-label"></label>
+                        <input asp-for="Telefono" class="form-control" placeholder="Ej. +54 9 11 5555 1234" />
+                        <span asp-validation-for="Telefono" class="text-danger"></span>
+                    </div>
+                    <div class="form-group form-check mb-3">
+                        <input class="form-check-input" asp-for="Activo" />
+                        <label class="form-check-label" asp-for="Activo"></label>
+                    </div>
+                    <div class="form-group d-flex justify-content-between mt-4">
+                        <button type="submit" value="Crear" class="btn btn-primary">
+                            <i class="bi bi-save me-1"></i> Crear
+                        </button>
+                        <a asp-action="Index" class="btn btn-secondary">
+                            <i class="bi bi-x-circle me-1"></i> Cancelar
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

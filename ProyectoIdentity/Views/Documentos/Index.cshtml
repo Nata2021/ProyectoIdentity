@@ -1,0 +1,83 @@
+﻿@model IEnumerable<ProyectoIdentity.Models.Domain.Documento>
+
+@{
+    ViewData["Title"] = "Listado de Documentos";
+}
+
+<h1>Listado de Documentos</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Subir Nuevo Documento</a>
+</p>
+
+<table class="table table-striped table-bordered" id="documentosTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Caso)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tipo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Version)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SubidoPor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaSubida)
+            </th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                   
+                    @Html.DisplayFor(modelItem => item.Caso.Titulo) (@Html.DisplayFor(modelItem => item.Caso.Cliente.NombreCompleto))
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tipo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Version)
+                </td>
+                <td>
+                   
+                    @Html.DisplayFor(modelItem => item.SubidoPor.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaSubida)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.DocumentoId" class="btn btn-warning btn-sm">Editar</a> |
+                    <a asp-action="Details" asp-route-id="@item.DocumentoId" class="btn btn-info btn-sm">Detalles</a> |
+                    <a asp-action="Delete" asp-route-id="@item.DocumentoId" class="btn btn-danger btn-sm">Eliminar</a> |
+                    <a asp-action="Download" asp-route-id="@item.DocumentoId" class="btn btn-success btn-sm">Descargar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#documentosTable').DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json"
+                }
+            });
+        });
+    </script>
+}
